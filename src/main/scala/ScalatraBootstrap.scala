@@ -2,8 +2,11 @@
 import org.scalatra._
 import javax.servlet.ServletContext
 
-import controllers.loginController
-import models.Tabelas
+import com.github.aselab.activerecord._
+import dsl._
+
+import controllers.UsuarioController
+import models.{Grupo, Tabelas, Usuario}
 
 class ScalatraBootstrap extends LifeCycle {
   //definindo qual o bando de dados
@@ -11,7 +14,7 @@ class ScalatraBootstrap extends LifeCycle {
   override def init(context: ServletContext) {
     //inicializando as tabelas do banco de dados
     Tabelas.initialize
-    context.mount(new loginController,  "/*")
+    context.mount(new UsuarioController,  "/usuario/*")
   }
 
   override def destroy(context: ServletContext): Unit = {
