@@ -5,9 +5,8 @@ import java.util.Date
 import com.github.aselab.activerecord._
 import dsl._
 
-case class Usuario(nome:String,email:String,senha:String,isAdmin:Boolean = false ) extends ActiveRecord{
-  val grupoId:Option[Long] = None
-
+case class Usuario(nome:String, @Unique email:String, senha:String, isAdmin:Boolean = false ) extends ActiveRecord{
+  val grupoId:Long = 0
   lazy val grupo = belongsTo[Grupo]
 }
 
@@ -17,14 +16,14 @@ case class Grupo(nome:String)extends ActiveRecord{
 }
 
 case class Dados(temperaturaAtual:Double, dataAtual:Date) extends ActiveRecord{
-  val sensorID:Option[Long]=None
+  val sensorID:Long=0
   //relacionamento
   lazy val sensor = belongsTo[Sensor]
 }
 
-case class Estabelecimento(var nome:String,var endereco:String) extends ActiveRecord
+case class Estabelecimento( nome:String, endereco:String) extends ActiveRecord
 
-case class Sensor(var decricao:String,var temperaturaMin:Double,var temperaturaMax:Double) extends ActiveRecord{
+case class Sensor( decricao:String, temperaturaMin:Double, temperaturaMax:Double) extends ActiveRecord{
   lazy val dados = hasMany[Dados]
 }
 
