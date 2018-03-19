@@ -38,7 +38,6 @@ object UsuarioService {
     var grupoAntigo = Grupo.find(usuarioSalvo.grupoId).head
 
     removeUsuarioDoGrupo(usuarioSalvo, grupoAntigo)
-    println("-Aqui")
     //atualizado
     val usuarioAtualizado = usuarioSalvo.copy(nome = usuario.nome, email = usuario.email, isAdmin = usuario.isAdmin, senha = usuario.senha).update
     //novo grupo
