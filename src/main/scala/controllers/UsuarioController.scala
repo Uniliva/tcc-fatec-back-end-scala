@@ -2,10 +2,10 @@ package controllers
 
 import com.github.aselab.activerecord.RecordInvalidException
 import com.typesafe.scalalogging.LazyLogging
-import models.{Dados, Grupo, Sensor, Usuario}
+import models.{Dados,  Sensor, Usuario}
 import org.scalatra.{CorsSupport, MatchedRoute, ScalatraServlet}
 import com.github.aselab.activerecord.dsl._
-import services.UsuarioService
+import services.{UsuarioService}
 import org.json4s._
 import org.scalatra._
 import org.scalatra.json.JacksonJsonSupport
@@ -41,8 +41,7 @@ class UsuarioController extends ScalatraServlet with LazyLogging with CorsSuppor
     "nome": "Teste",
     "isAdmin": true,
     "email": "como@umoniotr.com.br",
-    "senha": "1234",
-    "grupoId": 1
+    "senha": "1234"
 }
    */
   post("/novo") {
@@ -61,7 +60,7 @@ class UsuarioController extends ScalatraServlet with LazyLogging with CorsSuppor
 
   get("/todos") {
     UsuarioService.buscaTodos() match {
-      case None => NotFound("msg" -> "Erro ao criar usuario")
+      case None => NotFound("msg" -> "Erro ao buscar usuario")
       case usuario => Ok("usuarios" -> usuario.head.asJson)
     }
   }
@@ -97,7 +96,6 @@ class UsuarioController extends ScalatraServlet with LazyLogging with CorsSuppor
         case None => NotFound("msg" -> "Erro ao atualizar usuario")
         case usuario => Ok("usuario-atualizado" -> usuario.head.asJson)
       }
-
   }
 
 }

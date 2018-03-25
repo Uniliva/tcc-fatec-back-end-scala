@@ -4,18 +4,12 @@ import java.util.Date
 
 import com.github.aselab.activerecord._
 import dsl._
+import org.joda.time.DateTime
 
-case class Usuario(nome:String, @Unique email:String, senha:String, isAdmin:Boolean = false ) extends ActiveRecord{
-  val grupoId:Long = 0
-  lazy val grupo = belongsTo[Grupo]
-}
+case class Usuario(var nome:String, @Unique var email:String,var senha:String,var isAdmin:Boolean = false ) extends ActiveRecord
 
-case class Grupo(nome:String)extends ActiveRecord{
-  lazy val usuarios = hasMany[Usuario]
-  lazy val usuariosAdmin = hasMany[Usuario](conditions = Map("isAdmin" -> true))
-}
 
-case class Dados(temperaturaAtual:Double, dataAtual:Date) extends ActiveRecord{
+case class Dados(var temperaturaAtual:Double, var dataAtual:DateTime) extends ActiveRecord{
   val sensorID:Long=0
   //relacionamento
   lazy val sensor = belongsTo[Sensor]
@@ -30,8 +24,6 @@ case class Sensor( decricao:String, temperaturaMin:Double, temperaturaMax:Double
 
 
 object Usuario extends ActiveRecordCompanion[Usuario]
-
-object Grupo extends ActiveRecordCompanion[Grupo]
 
 object Dados extends ActiveRecordCompanion[Dados]
 

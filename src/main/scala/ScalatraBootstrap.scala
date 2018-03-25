@@ -4,8 +4,8 @@ import javax.servlet.ServletContext
 
 import com.github.aselab.activerecord._
 import dsl._
-import controllers.{GrupoController, UsuarioController}
-import models.{Grupo, Tabelas, Usuario}
+import controllers.{DadosController, UsuarioController}
+import models.{Tabelas, Usuario}
 
 class ScalatraBootstrap extends LifeCycle {
   //definindo qual o bando de dados
@@ -14,7 +14,7 @@ class ScalatraBootstrap extends LifeCycle {
     //inicializando as tabelas do banco de dados
     Tabelas.initialize
     context.mount(new UsuarioController,  "/usuario/*")
-    context.mount(new GrupoController,  "/grupo/*")
+    context.mount(new DadosController,  "/dados/*")
   }
 
   override def destroy(context: ServletContext): Unit = {
