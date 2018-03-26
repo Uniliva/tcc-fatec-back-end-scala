@@ -30,7 +30,7 @@ object UsuarioService {
     Some(usuarioSalvo)
   }
 
-  def delete(id:Long):Option[Boolean] =  Some(Usuario.find(id).head.delete)
+  def remove(id:Long):Boolean =  Usuario.find(id).head.delete
 
 
 case class UsuarioLogin(email: String, senha: String)

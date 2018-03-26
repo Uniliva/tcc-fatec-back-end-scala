@@ -10,15 +10,19 @@ case class Usuario(var nome: String, @Unique var email: String, var senha: Strin
 
 
 case class Dados(var temperaturaAtual: Double, var dataAtual: DateTime) extends ActiveRecord {
-  val sensorID: Long = 0
+  var sensorID: Long = 0
   //relacionamento
-  lazy val sensor = belongsTo[Sensor]
+  lazy val sensor = belongsTo[Sensor](foreignKey = "sensorID")
 }
 
-case class Estabelecimento(var nome: String, var endereco: String) extends ActiveRecord
+case class Estabelecimento(var nome: String, var endereco: String) extends ActiveRecord {
+  lazy val sensores = hasMany[Sensor](foreignKey = "estabelecimentoID")
+}
 
 case class Sensor(decricao: String, temperaturaMin: Double, temperaturaMax: Double) extends ActiveRecord {
-  lazy val dados = hasMany[Dados]
+  var estabelecimentoID: Long = 0
+  lazy val dados = hasMany[Dados](foreignKey = "sensorID")
+  lazy val estabelecimento = belongsTo[Estabelecimento](foreignKey = "estabelecimentoID")
 }
 
 

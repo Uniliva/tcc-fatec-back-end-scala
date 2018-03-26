@@ -58,7 +58,6 @@ class UsuarioController extends ScalatraServlet with LazyLogging with CorsSuppor
       }
     } catch {
       case e: RecordInvalidException => BadRequest("msg" -> "E-mail ja cadastrado")
-      case e: NoSuchElementException => BadRequest("msg" -> "Grupo invalido")
       case e: Exception =>BadRequest("msg" -> "Requisição inválida")
     }
   }
@@ -107,7 +106,7 @@ class UsuarioController extends ScalatraServlet with LazyLogging with CorsSuppor
         case usuario => Ok("usuario-atualizado" -> usuario.head.asJson)
       }
     }catch {
-        case x: Exception => InternalServerError("msg" -> "Erro ao Buscar usuario pelo email")
+        case x: Exception => InternalServerError("msg" -> "Erro ao atualizar usuario")
       }
   }
 
@@ -115,13 +114,15 @@ class UsuarioController extends ScalatraServlet with LazyLogging with CorsSuppor
     try {
       logger.info("Removendo o usuario.")
       val id = params("id").toLong
-      UsuarioService.delete(id) match {
-        case Some(true) => Ok("usuario" -> "Usuario Removido com sucesso")
+      UsuarioService.remove(id) match {
+        case true => Ok("msg" -> "Usuario Removido com sucesso")
+        case false => InternalServerError("msg" -> "Erro ao remover usuario pelo id")
       }
-    } catch {
-      case e: NumberFormatException => BadRequest("msg" -> "Id informado é invalido")
-      case x: Exception => InternalServerError("msg" -> "Erro ao remover usuario pelo id")
-    }
+  } catch {
+    case e: NumberFormatException => BadRequest("msg" -> "Id informado é invalido")
+    case e: NoSuchElementException => NotFound("msg" -> "Usuario invalido")
+    case x: Exception => InternalServerError("msg" -> "Erro ao remover usuario pelo id")
+  }
   }
 
 }

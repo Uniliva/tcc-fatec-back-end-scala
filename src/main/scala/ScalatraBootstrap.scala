@@ -1,10 +1,9 @@
 
 import org.scalatra._
 import javax.servlet.ServletContext
-
 import com.github.aselab.activerecord._
 import dsl._
-import controllers.{DadosController, UsuarioController}
+import controllers.{DadosController, EstabelecimentoController, UsuarioController}
 import models.{Tabelas, Usuario}
 
 class ScalatraBootstrap extends LifeCycle {
@@ -15,6 +14,7 @@ class ScalatraBootstrap extends LifeCycle {
     Tabelas.initialize
     context.mount(new UsuarioController,  "/usuario/*")
     context.mount(new DadosController,  "/dados/*")
+    context.mount(new EstabelecimentoController,  "/estabelecimento/*")
   }
 
   override def destroy(context: ServletContext): Unit = {

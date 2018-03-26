@@ -34,7 +34,7 @@ class DadosController extends ScalatraServlet with LazyLogging with CorsSupport 
   */
   post("/novo") {
     try {
-      logger.info("Adicionando nobo dado do sensor.")
+      logger.info("Adicionando novo dado do sensor.")
       val dado = parsedBody.extract[DadoNovo]
       DadosServices.novo(dado) match {
         case None => InternalServerError("msg" -> "Erro ao criar Dados")
