@@ -19,6 +19,7 @@ libraryDependencies ++= Seq(
   "javax.servlet" % "javax.servlet-api" % "3.1.0" % "provided",
   "org.scalatra" %% "scalatra-json"  % ScalatraVersion,
   "org.json4s" %% "json4s-jackson"   % "3.5.2",
+  "org.json4s" %% "json4s-ext" % "3.5.2",
   "mysql" % "mysql-connector-java" % "6.0.6",
   "com.github.aselab" %% "scala-activerecord" % "0.4.0"
 )

@@ -2,10 +2,10 @@ package controllers
 
 import com.github.aselab.activerecord.RecordInvalidException
 import com.typesafe.scalalogging.LazyLogging
-import models.{Dados,  Sensor, Usuario}
+import models.{Dados, Sensor, Usuario}
 import org.scalatra.{CorsSupport, MatchedRoute, ScalatraServlet}
 import com.github.aselab.activerecord.dsl._
-import services.{UsuarioService}
+import services.UsuarioService
 import org.json4s._
 import org.scalatra._
 import org.scalatra.json.JacksonJsonSupport
@@ -96,6 +96,18 @@ class UsuarioController extends ScalatraServlet with LazyLogging with CorsSuppor
         case None => NotFound("msg" -> "Erro ao atualizar usuario")
         case usuario => Ok("usuario-atualizado" -> usuario.head.asJson)
       }
+  }
+
+  delete("/id/:id") {
+    try {
+      val id = params("id").toLong
+      UsuarioService.delete(id) match {
+        case Some(true) => Ok("usuario" -> "Usuario Removido com sucesso")
+      }
+    } catch {
+      case e: NumberFormatException => BadRequest("msg" -> "Id informado é invalido")
+      case x: Exception => InternalServerError("msg" -> "Erro ao remover usuario pelo id")
+    }
   }
 
 }
