@@ -26,8 +26,7 @@ object UsuarioService {
     usuarioSalvo.email = usuario.email
     usuarioSalvo.isAdmin = usuario.isAdmin
     usuarioSalvo.senha = usuario.senha
-    Some(usuarioSalvo.save)
-
+    usuarioSalvo.save
     Some(usuarioSalvo)
   }
 

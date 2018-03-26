@@ -26,13 +26,17 @@ class UsuarioController extends ScalatraServlet with LazyLogging with CorsSuppor
 
   post("/login") {
     try {
+      logger.info("Login iniciado.")
       val usuarioLogin = parsedBody.extract[UsuarioLogin]
       UsuarioService.logar(usuarioLogin) match {
         case None => NotFound("msg" -> "usuario ou senha invalidos")
         case usuario => Ok("usuario-logado" -> usuario.head.asJson)
       }
     } catch {
-      case e: Exception => BadRequest("msg" -> "Requisição inválida")
+      case e: Exception => {
+        logger.warn("Erro no login.")
+        BadRequest("msg" -> "Requisição inválida")
+      }
     }
   }
 
@@ -46,6 +50,7 @@ class UsuarioController extends ScalatraServlet with LazyLogging with CorsSuppor
    */
   post("/novo") {
     try {
+      logger.info("Adicionando Usuario.")
       val usuario = parsedBody.extract[UsuarioNovo]
       UsuarioService.novo(usuario) match {
         case None => InternalServerError("msg" -> "Erro ao criar usuario")
@@ -59,6 +64,7 @@ class UsuarioController extends ScalatraServlet with LazyLogging with CorsSuppor
   }
 
   get("/todos") {
+    logger.info("Buscando todos os  usuarios.")
     UsuarioService.buscaTodos() match {
       case None => NotFound("msg" -> "Erro ao buscar usuario")
       case usuario => Ok("usuarios" -> usuario.head.asJson)
@@ -67,6 +73,7 @@ class UsuarioController extends ScalatraServlet with LazyLogging with CorsSuppor
 
   get("/id/:id") {
     try {
+      logger.info("Buscando usuario pelo ID.")
       val id = params("id").toLong
       UsuarioService.buscaPorId(id) match {
         case None => NotFound("msg" -> "Usuario não encontrado")
@@ -80,6 +87,7 @@ class UsuarioController extends ScalatraServlet with LazyLogging with CorsSuppor
 
   get("/email/:email") {
     try {
+      logger.info("Buscando usaurio pelo Email.")
       val email = params("email")
       UsuarioService.buscaPorEmail(email) match {
         case None => NotFound("msg" -> "Usuario não encontrado")
@@ -91,15 +99,21 @@ class UsuarioController extends ScalatraServlet with LazyLogging with CorsSuppor
   }
 
   post("/atualizar"){
+    try {
+      logger.info("Atualizando usuario.")
       val usuario = parsedBody.extract[UsuarioNovo]
       UsuarioService.atualizar(usuario) match {
         case None => NotFound("msg" -> "Erro ao atualizar usuario")
         case usuario => Ok("usuario-atualizado" -> usuario.head.asJson)
       }
+    }catch {
+        case x: Exception => InternalServerError("msg" -> "Erro ao Buscar usuario pelo email")
+      }
   }
 
   delete("/id/:id") {
     try {
+      logger.info("Removendo o usuario.")
       val id = params("id").toLong
       UsuarioService.delete(id) match {
         case Some(true) => Ok("usuario" -> "Usuario Removido com sucesso")
@@ -111,20 +125,3 @@ class UsuarioController extends ScalatraServlet with LazyLogging with CorsSuppor
   }
 
 }
-
-
-/*
-  val admin = Usuario("Admin","admin@umoniotr.com.br","1234").create
-    val suporte = Usuario("suporte","suporte@umoniotr.com.br","1234").create
-
-    val gadmin = Grupo("Usuarios").create
-
-    gadmin.usuarios << suporte
-    gadmin.usuariosAdmin << admin
-
-    println(gadmin.usuarios.toList)
-
-    println(admin.grupo)
-
-    println(admin.isAdmin)
- */
