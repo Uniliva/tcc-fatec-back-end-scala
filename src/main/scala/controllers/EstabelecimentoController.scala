@@ -7,7 +7,7 @@ import com.github.aselab.activerecord.dsl._
 import org.json4s._
 import org.scalatra._
 import org.scalatra.json.JacksonJsonSupport
-import services.EstabelecimentoService
+import services.{DadosServices, EstabelecimentoService}
 import services.EstabelecimentoService.EstabelecimentoNovo
 
 class EstabelecimentoController extends ScalatraServlet with LazyLogging with CorsSupport with JacksonJsonSupport {
@@ -58,6 +58,7 @@ class EstabelecimentoController extends ScalatraServlet with LazyLogging with Co
       case x: Exception => InternalServerError("msg" -> "Erro ao Buscar estabelecimento pelo id")
     }
   }
+
 
   get("/sensores/:id") {
     try {

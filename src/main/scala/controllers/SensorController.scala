@@ -9,7 +9,7 @@ import com.github.aselab.activerecord.dsl._
 import models.Sensor
 import org.json4s._
 import org.scalatra._
-import services.SensorService
+import services.{DadosServices, SensorService}
 import services.SensorService.SensorNovo
 
 class SensorController extends ScalatraServlet with LazyLogging with CorsSupport with JacksonJsonSupport {
@@ -60,8 +60,6 @@ class SensorController extends ScalatraServlet with LazyLogging with CorsSupport
       case x: Exception => InternalServerError("msg" -> "Erro interno")
     }
   }
-
-  
 
   post("/atualizar") {
     try {

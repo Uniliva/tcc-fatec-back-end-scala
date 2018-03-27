@@ -4,7 +4,7 @@ organization := "com.fatec.osasco"
 
 name := "umonitor"
 
-version := "0.1.0-SNAPSHOT"
+version := "0.1.0"
 
 scalaVersion := "2.12.4"
 
@@ -28,3 +28,4 @@ libraryDependencies ++= Seq(
 enablePlugins(ScalatraPlugin)
 enablePlugins(JettyPlugin)
 containerPort in Jetty := 8060   //para mudar a porta
+enablePlugins(JavaAppPackaging)

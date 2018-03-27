@@ -1,0 +1,1 @@
+web: target/universal/stage/bin/umonitor -Dhttp.port=$PORT -Dother.prop=someValue
