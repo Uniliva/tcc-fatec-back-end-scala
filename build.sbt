@@ -28,4 +28,5 @@ libraryDependencies ++= Seq(
 enablePlugins(ScalatraPlugin)
 enablePlugins(JettyPlugin)
 containerPort in Jetty := 8060   //para mudar a porta
-enablePlugins(JavaAppPackaging)
+
+enablePlugins(JavaServerAppPackaging)
