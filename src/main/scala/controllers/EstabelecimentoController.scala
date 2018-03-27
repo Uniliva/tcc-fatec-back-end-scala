@@ -12,6 +12,7 @@ import services.EstabelecimentoService.EstabelecimentoNovo
 
 class EstabelecimentoController extends ScalatraServlet with LazyLogging with CorsSupport with JacksonJsonSupport {
   override protected implicit def jsonFormats: Formats = DefaultFormats
+
   before() {
     contentType = formats("json")
   }
@@ -31,7 +32,7 @@ class EstabelecimentoController extends ScalatraServlet with LazyLogging with Co
         case estabelecimento => Ok("novo-estabelecimento" -> estabelecimento.head.asJson)
       }
     } catch {
-      case e: Exception =>BadRequest("msg" -> "Requisição inválida")
+      case e: Exception => BadRequest("msg" -> "Requisição inválida")
     }
   }
 
@@ -47,17 +48,32 @@ class EstabelecimentoController extends ScalatraServlet with LazyLogging with Co
     try {
       logger.info("Buscando estabelecimento pelo ID.")
       val id = params("id").toLong
-      EstabelecimentoService.buscaPorId(id) match {
+      EstabelecimentoService.buscaEstabelecimentosPorId(id) match {
         case None => NotFound("msg" -> "Estabelecimento não encontrado")
         case estabelecimento => Ok("estabelecimento" -> estabelecimento.head.asJson)
       }
     } catch {
+      case e: NoSuchElementException => BadRequest("msg" -> "Estabelecimento ou sensor invalido")
       case e: NumberFormatException => BadRequest("msg" -> "Id informado é invalido")
       case x: Exception => InternalServerError("msg" -> "Erro ao Buscar estabelecimento pelo id")
     }
   }
 
-  post("/atualizar"){
+  get("/sensores/:id") {
+    try {
+      logger.info("Buscando sensores de um estabelecimento pelo ID.")
+      val id = params("id").toLong
+      EstabelecimentoService.buscaSensoresPorId(id) match {
+        case Right(sensores) => Ok("Sensores-do-estabelecimento" -> sensores.asJson)
+      }
+    } catch {
+      case e: NoSuchElementException => BadRequest("msg" -> "Estabelecimento ou sensor invalido")
+      case e: NumberFormatException => BadRequest("msg" -> "Id informado é invalido")
+      case x: Exception => InternalServerError("msg" -> "Erro interno")
+    }
+  }
+
+  post("/atualizar") {
     try {
       logger.info("Atualizando estabelecimento.")
       val estabelecimento = parsedBody.extract[EstabelecimentoNovo]
@@ -65,8 +81,38 @@ class EstabelecimentoController extends ScalatraServlet with LazyLogging with Co
         case Left(e) => NotFound("msg" -> "Erro ao atualizar estabelecimento")
         case Right(estabelecimento) => Ok("estabelecimento-atualizado" -> estabelecimento.asJson)
       }
-    }catch {
+    } catch {
       case x: Exception => InternalServerError("msg" -> "Erro ao atualizar estabelecimento")
+    }
+  }
+
+  post("/remove-sensor/:idEstabelecimento/sensor/:idSensor") {
+    try {
+      logger.info("Removendo sensor de um estabelecimento.")
+      val idEstabelecimento = params("idEstabelecimento").toLong
+      val idSensor = params("idSensor").toLong
+      EstabelecimentoService.removerSensor(idEstabelecimento, idSensor) match {
+        case Left(e) => NotFound("msg" -> "Erro ao remover sensor estabelecimento")
+        case Right(sensor) => Ok("sensor-removido" -> sensor.asJson)
+      }
+    } catch {
+      case e: NoSuchElementException => BadRequest("msg" -> "Estabelecimento ou sensor invalido")
+      case x: Exception => InternalServerError("msg" -> "Erro ao interno")
+    }
+  }
+
+  post("/adicionar-sensor/:idEstabelecimento/sensor/:idSensor") {
+    try {
+      logger.info("Adicionando sensor a um estabelecimento.")
+      val idEstabelecimento = params("idEstabelecimento").toLong
+      val idSensor = params("idSensor").toLong
+      EstabelecimentoService.adicionarSensor(idEstabelecimento, idSensor) match {
+        case Left(e) => BadRequest("msg" -> "Erro ao adicionar sensor estabelecimento")
+        case Right(sensor) => Ok("sensor-adicionado" -> sensor.asJson)
+      }
+    } catch {
+      case e: NoSuchElementException => NotFound("msg" -> "Estabelecimento ou sensor invalido")
+      case x: Exception => InternalServerError("msg" -> "Erro ao interno")
     }
   }
 
@@ -75,8 +121,8 @@ class EstabelecimentoController extends ScalatraServlet with LazyLogging with Co
       logger.info("Removendo o estabelecimento.")
       val id = params("id").toLong
       EstabelecimentoService.delete(id) match {
-        case true => Ok("msg" -> "Estabelecimento Removido com sucesso")
-        case false => InternalServerError("msg" -> "Erro ao remover usuario pelo id")
+        case true => Ok("msg" -> "Estabelecimento removido com sucesso")
+        case false => InternalServerError("msg" -> "Erro ao remover estabelecimento pelo id")
       }
     } catch {
       case e: NumberFormatException => BadRequest("msg" -> "Id informado é invalido")

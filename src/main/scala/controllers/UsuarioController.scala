@@ -125,4 +125,6 @@ class UsuarioController extends ScalatraServlet with LazyLogging with CorsSuppor
   }
   }
 
+
+
 }
