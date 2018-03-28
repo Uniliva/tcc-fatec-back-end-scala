@@ -66,6 +66,7 @@ class EstabelecimentoController extends ScalatraServlet with LazyLogging with Co
       val id = params("id").toLong
       EstabelecimentoService.buscaSensoresPorId(id) match {
         case Right(sensores) => Ok("Sensores-do-estabelecimento" -> sensores.asJson)
+        case Left(e) => InternalServerError("msg" -> "Erro interno")
       }
     } catch {
       case e: NoSuchElementException => BadRequest("msg" -> "Estabelecimento ou sensor invalido")
