@@ -21,7 +21,9 @@ libraryDependencies ++= Seq(
   "org.json4s" %% "json4s-jackson"   % "3.5.2",
   "org.json4s" %% "json4s-ext" % "3.5.2",
   "mysql" % "mysql-connector-java" % "6.0.6",
-  "com.github.aselab" %% "scala-activerecord" % "0.4.0"
+  "com.github.aselab" %% "scala-activerecord" % "0.4.0",
+  "org.eclipse.jetty" % "jetty-webapp" % "9.1.5.v20140505" % "compile;container",
+  "org.eclipse.jetty" % "jetty-plus" % "9.1.5.v20140505" % "compile;container"
 )
 
 
