@@ -21,10 +21,10 @@ libraryDependencies ++= Seq(
   "org.json4s" %% "json4s-jackson"   % "3.5.2",
   "org.json4s" %% "json4s-ext" % "3.5.2",
   "mysql" % "mysql-connector-java" % "6.0.6",
-  "com.github.aselab" %% "scala-activerecord" % "0.4.0"
+  "com.github.aselab" %% "scala-activerecord" % "0.4.0",
+  "org.eclipse.jetty" % "jetty-webapp" % "9.1.5.v20140505" % "compile;container",
+  "org.eclipse.jetty" % "jetty-plus" % "9.1.5.v20140505" % "compile;container"
 )
-
-
 enablePlugins(ScalatraPlugin)
 enablePlugins(JettyPlugin)
 containerPort in Jetty := 8060   //para mudar a porta
@@ -32,15 +32,3 @@ containerPort in Jetty := 8060   //para mudar a porta
 
 enablePlugins(JavaAppPackaging)
 
-javaOptions in Universal ++= Seq(
-  // -J params will be added as jvm parameters
-  "-J-Xmx64m",
-  "-J-Xms64m",
-
-  // others will be added as app parameters
-  "-Dproperty=true",
-  "-port=8080",
-
-  // you can access any build setting/task here
-  s"-version=${version.value}"
-)
