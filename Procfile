@@ -1,1 +1,1 @@
-web: target/scala-2.12/umonitor_2.12-0.1.0
+web: target/universal/stage/bin/umonitor
