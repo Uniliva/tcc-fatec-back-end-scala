@@ -8,7 +8,8 @@ import models.{Tabelas, Usuario}
 
 class ScalatraBootstrap extends LifeCycle {
   //definindo qual o bando de dados
-  System.setProperty("run.mode", "prod")
+  //System.setProperty("run.mode", "prod")
+  System.setProperty("run.mode", "local")
   override def init(context: ServletContext) {
     //inicializando as tabelas do banco de dados
     Tabelas.initialize
@@ -16,6 +17,8 @@ class ScalatraBootstrap extends LifeCycle {
     context.mount(new DadosController,  "/dados/*")
     context.mount(new EstabelecimentoController,  "/estabelecimento/*")
     context.mount(new SensorController,  "/sensores/*")
+
+    context.initParameters("org.scalatra.cors.allowedOrigins") = "*"
   }
 
   override def destroy(context: ServletContext): Unit = {

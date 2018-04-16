@@ -16,12 +16,10 @@ class UsuarioController extends ScalatraServlet with LazyLogging with CorsSuppor
 
   before() {
     contentType = formats("json")
-  }
 
-  options("/*") {
-    response.setHeader(
-      "Access-Control-Allow-Headers", request.getHeader("Access-Control-Request-Headers")
-    )
+    response.setHeader("Access-Control-Allow-Origin", "*")
+    response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
+    response.setHeader("Access-Control-Max-Age", "3600")
   }
 
   post("/login") {
