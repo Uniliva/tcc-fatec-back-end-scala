@@ -9,26 +9,14 @@ import org.scalatra._
 import org.scalatra.json.JacksonJsonSupport
 import services.UsuarioService.{UsuarioLogin, UsuarioNovo}
 
-class UsuarioController extends ScalatraServlet with ScalatraBase  with CorsSupport with LazyLogging with JacksonJsonSupport {
-  override protected implicit def jsonFormats: Formats = DefaultFormats
-
-  before() {
-    logger.info("Before")
-    contentType = formats("json")
-
-  }
-  options("/*"){
-    response.setHeader("Access-Control-Allow-Origin", "*")
-  }
-
+class UsuarioController extends ControllerBase {
   post("/login") {
     try {
       logger.info("Login iniciado.")
       val usuarioLogin = parsedBody.extract[UsuarioLogin]
-      UsuarioService.logar(usuarioLogin) match {
-        case None => NotFound("msg" -> "usuario ou senha invalidos")
-        case usuario => Ok("usuario-logado" -> usuario.head.asJson)
-      }
+      UsuarioService.logar(usuarioLogin).
+        map(usuario =>Ok("usuario-logado" -> usuario.asJson)).
+        getOrElse(Unauthorized("msg" -> "usuario ou senha invalidos"))
     } catch {
       case e: Exception => {
         logger.warn("Erro no login.")
