@@ -18,7 +18,9 @@ class ScalatraBootstrap extends LifeCycle {
     context.mount(new EstabelecimentoController,  "/estabelecimento/*")
     context.mount(new SensorController,  "/sensores/*")
 
-    context.initParameters("org.scalatra.cors.allowedOrigins") = "*"
+
+    context.initParameters("org.scalatra.cors.allowedOrigins")= "http://192.168.56.1:8081"
+    context.initParameters("org.scalatra.cors.allowCredentials") = "false"
   }
 
   override def destroy(context: ServletContext): Unit = {

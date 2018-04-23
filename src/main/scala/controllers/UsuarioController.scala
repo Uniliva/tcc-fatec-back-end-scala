@@ -2,8 +2,6 @@ package controllers
 
 import com.github.aselab.activerecord.RecordInvalidException
 import com.typesafe.scalalogging.LazyLogging
-import models.{Dados, Sensor, Usuario}
-import org.scalatra.{CorsSupport, MatchedRoute, ScalatraServlet}
 import com.github.aselab.activerecord.dsl._
 import services.UsuarioService
 import org.json4s._
@@ -11,15 +9,16 @@ import org.scalatra._
 import org.scalatra.json.JacksonJsonSupport
 import services.UsuarioService.{UsuarioLogin, UsuarioNovo}
 
-class UsuarioController extends ScalatraServlet with LazyLogging with CorsSupport with JacksonJsonSupport {
+class UsuarioController extends ScalatraServlet with ScalatraBase  with CorsSupport with LazyLogging with JacksonJsonSupport {
   override protected implicit def jsonFormats: Formats = DefaultFormats
 
   before() {
+    logger.info("Before")
     contentType = formats("json")
 
+  }
+  options("/*"){
     response.setHeader("Access-Control-Allow-Origin", "*")
-    response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
-    response.setHeader("Access-Control-Max-Age", "3600")
   }
 
   post("/login") {
