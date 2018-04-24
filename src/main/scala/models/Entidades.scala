@@ -9,7 +9,7 @@ import org.joda.time.DateTime
 case class Usuario(var nome: String, @Unique var email: String, var senha: String, var isAdmin: Boolean = false) extends ActiveRecord
 
 
-case class Dados(var temperaturaAtual: Double, var dataAtual: DateTime) extends ActiveRecord {
+case class Dados(var temperaturaAtual: Double, var dataAtual: DateTime, var temEnergia: Boolean) extends ActiveRecord {
   var sensorID: Long = 0
   //relacionamento
   lazy val sensor = belongsTo[Sensor](foreignKey = "sensorID")

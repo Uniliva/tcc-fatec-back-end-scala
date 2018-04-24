@@ -1,10 +1,13 @@
 package controllers
 
+import com.fasterxml.jackson.databind.JsonMappingException
 import com.github.aselab.activerecord.dsl._
 import org.json4s._
 import org.scalatra._
 import services.DadosServices
 import services.DadosServices.DadoNovo
+
+import scala.util.Try
 
 class DadosController extends ControllerBase {
   /*
@@ -15,42 +18,27 @@ class DadosController extends ControllerBase {
 }
   */
   post("/novo") {
-    try {
+    Try {
       logger.info("Adicionando novo dado do sensor.")
       val dado = parsedBody.extract[DadoNovo]
-      DadosServices.novo(dado) match {
-        case None => InternalServerError("msg" -> "Erro ao criar Dados")
-        case dados => Ok("dado" -> dados.head.asJson)
-      }
-    } catch {
-      case e: NoSuchElementException => BadRequest("msg" -> "Dados invalido")
-      case e: Exception => BadRequest("msg" -> "Requisição inválida")
+      DadosServices.novo(dado)
+        .map(dados => Ok("dado" -> dados.asJson)).orNull
     }
   }
-  /*
+
   get("/todos") {
-    try {
-      DadosServices.buscaTodos() match {
-        case None => NotFound("msg" -> "Erro ao buscar dados")
-        case dados => Ok("dados" -> dados.head.asJson)
-      }
-    } catch {
-      case x: Exception => InternalServerError("msg" -> "Erro ao Buscar dado do sensor pelo id")
+    Try {
+      DadosServices.buscaTodos()
+        .map(dados => Ok("dados" -> dados.asJson)).orNull
     }
-  }*/
+  }
 
   get("/sensor/:sensorId/quantidade/:qtd") {
-    try {
+    Try {
       logger.info("Buscando os dados de um sensor.")
       val sensor = params("sensorId").toLong
       val qtd = params("qtd").toInt
-
-      DadosServices.porSensorQuantidade(sensor, qtd) match {
-        case dados => Ok("dados" -> dados.head.asJson)
-      }
-    } catch {
-      case e: NumberFormatException => BadRequest("msg" -> "Valores informados invalidos")
-      case x: Exception => InternalServerError("msg" -> s"Erro ao Buscar dado do sensor")
+      DadosServices.porSensorQuantidade(sensor, qtd).map(dados => Ok("dados" -> dados.asJson)).orNull
     }
   }
 
@@ -59,15 +47,7 @@ class DadosController extends ControllerBase {
     try {
       logger.info("Buscando dados pelo Id.")
       val id = params("id").toLong
-      DadosServices.buscaPorId(id) match {
-        case None => NotFound("msg" -> "Dado não encontrado")
-        case dado => Ok("dado" -> dado.head.asJson)
-      }
-    } catch {
-      case e: NumberFormatException => BadRequest("msg" -> "Id informado é invalido")
-      case x: Exception => InternalServerError("msg" -> "Erro ao Buscar dado do sensor pelo id")
+      DadosServices.buscaPorId(id).map(dado => Ok("dado" -> dado.asJson))
     }
   }
-
-
 }

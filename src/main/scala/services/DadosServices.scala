@@ -8,7 +8,7 @@ object DadosServices {
   def porSensorQuantidade(sensor: Long, qtd: Int): Option[List[Dados]] = Some(Dados.where(_.sensorID === sensor).orderBy(_.dataAtual desc).limit(qtd).toList)
 
   def novo(dado: DadoNovo): Option[Dados] = {
-    val novo = Dados(dado.temperaturaAtual, dado.dataAtual)
+    val novo = Dados(dado.temperaturaAtual, dado.dataAtual, dado.temEnergia)
     novo.sensorID = dado.sensorId
     novo.save
     Some(novo)
@@ -17,6 +17,6 @@ object DadosServices {
 
   def buscaPorId(id: Long): Option[Dados] = Dados.find(id)
 
-  class DadoNovo(var temperaturaAtual: Double, var dataAtual: DateTime,var sensorId: Long = 0)
+  class DadoNovo(var temperaturaAtual: Double, var dataAtual: DateTime,var sensorId: Long = 0, var temEnergia:Boolean = false)
 
 }

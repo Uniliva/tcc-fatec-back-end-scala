@@ -1,11 +1,12 @@
 package controllers
 
-import com.github.aselab.activerecord.RecordInvalidException
 import com.github.aselab.activerecord.dsl._
-import services.UsuarioService
 import org.json4s._
 import org.scalatra._
+import services.UsuarioService
 import services.UsuarioService.{UsuarioLogin, UsuarioNovo}
+
+import scala.util.Try
 
 class UsuarioController extends ControllerBase {
   post("/login") {
@@ -13,7 +14,7 @@ class UsuarioController extends ControllerBase {
       logger.info("Login iniciado.")
       val usuarioLogin = parsedBody.extract[UsuarioLogin]
       UsuarioService.logar(usuarioLogin).
-        map(usuario =>Ok("usuario-logado" -> usuario.asJson)).
+        map(usuario => Ok("usuario-logado" -> usuario.asJson)).
         getOrElse(Unauthorized("msg" -> "usuario ou senha invalidos"))
     } catch {
       case e: Exception => {
@@ -32,82 +33,55 @@ class UsuarioController extends ControllerBase {
 }
    */
   post("/novo") {
-    try {
+    Try {
       logger.info("Adicionando Usuario.")
       val usuario = parsedBody.extract[UsuarioNovo]
-      UsuarioService.novo(usuario) match {
-        case None => InternalServerError("msg" -> "Erro ao criar usuario")
-        case usuario => Ok("novo-usuario" -> usuario.head.asJson)
-      }
-    } catch {
-      case e: RecordInvalidException => BadRequest("msg" -> "E-mail ja cadastrado")
-      case e: Exception =>BadRequest("msg" -> "Requisição inválida")
+      UsuarioService.novo(usuario).map(usuario => Ok("novo-usuario" -> usuario.asJson)).orNull
     }
   }
 
   get("/todos") {
-    logger.info("Buscando todos os  usuarios.")
-    UsuarioService.buscaTodos() match {
-      case None => NotFound("msg" -> "Erro ao buscar usuario")
-      case usuario => Ok("usuarios" -> usuario.head.asJson)
+    Try {
+      logger.info("Buscando todos os  usuarios.")
+      UsuarioService.buscaTodos().map(usuario => Ok("usuarios" -> usuario.asJson)).orNull
     }
   }
 
   get("/id/:id") {
-    try {
+    Try {
       logger.info("Buscando usuario pelo ID.")
       val id = params("id").toLong
-      UsuarioService.buscaPorId(id) match {
-        case None => NotFound("msg" -> "Usuario não encontrado")
-        case usuario => Ok("usuario" -> usuario.head.asJson)
-      }
-    } catch {
-      case e: NumberFormatException => BadRequest("msg" -> "Id informado é invalido")
-      case x: Exception => InternalServerError("msg" -> "Erro ao Buscar usuario pelo id")
+      UsuarioService.buscaPorId(id).map(usuario => Ok("usuario" -> usuario.asJson)).orNull
     }
   }
 
   get("/email/:email") {
-    try {
+    Try {
       logger.info("Buscando usaurio pelo Email.")
       val email = params("email")
-      UsuarioService.buscaPorEmail(email) match {
-        case None => NotFound("msg" -> "Usuario não encontrado")
-        case usuario => Ok("usuario" -> usuario.head.asJson)
-      }
-    } catch {
-      case x: Exception => InternalServerError("msg" -> "Erro ao Buscar usuario pelo email")
+      UsuarioService.buscaPorEmail(email).map(usuario => Ok("usuario" -> usuario.asJson)).orNull
     }
   }
 
-  post("/atualizar"){
-    try {
+  post("/atualizar") {
+    Try {
       logger.info("Atualizando usuario.")
       val usuario = parsedBody.extract[UsuarioNovo]
-      UsuarioService.atualizar(usuario) match {
-        case None => NotFound("msg" -> "Erro ao atualizar usuario")
-        case usuario => Ok("usuario-atualizado" -> usuario.head.asJson)
-      }
-    }catch {
-        case x: Exception => InternalServerError("msg" -> "Erro ao atualizar usuario")
-      }
+      UsuarioService.atualizar(usuario).map(usuario => Ok("usuario-atualizado" -> usuario.asJson)).orNull
+    }
   }
 
   delete("/id/:id") {
-    try {
+    Try {
       logger.info("Removendo o usuario.")
       val id = params("id").toLong
-      UsuarioService.remove(id) match {
-        case true => Ok("msg" -> "Usuario Removido com sucesso")
-        case false => InternalServerError("msg" -> "Erro ao remover usuario pelo id")
+      if (UsuarioService.remove(id)) {
+        Ok("msg" -> "Usuario Removido com sucesso")
+      } else {
+        InternalServerError("msg" -> "Erro ao remover usuario pelo id")
       }
-  } catch {
-    case e: NumberFormatException => BadRequest("msg" -> "Id informado é invalido")
-    case e: NoSuchElementException => NotFound("msg" -> "Usuario invalido")
-    case x: Exception => InternalServerError("msg" -> "Erro ao remover usuario pelo id")
+    }
   }
-  }
-
 
 
 }
