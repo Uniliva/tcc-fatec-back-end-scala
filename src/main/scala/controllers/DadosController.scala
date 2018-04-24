@@ -1,30 +1,12 @@
 package controllers
 
-import com.github.aselab.activerecord.RecordInvalidException
-import com.typesafe.scalalogging.LazyLogging
-import models.{Dados, Sensor, Usuario}
-import org.scalatra.{CorsSupport, MatchedRoute, ScalatraServlet}
 import com.github.aselab.activerecord.dsl._
-import services.UsuarioService
 import org.json4s._
-import org.json4s.ext.JodaTimeSerializers
 import org.scalatra._
-import org.scalatra.json.JacksonJsonSupport
 import services.DadosServices
 import services.DadosServices.DadoNovo
 
-class DadosController extends ScalatraServlet with LazyLogging with CorsSupport with JacksonJsonSupport {
-  override protected implicit def jsonFormats: Formats = DefaultFormats ++ JodaTimeSerializers.all
-
-  before() {
-    contentType = formats("json")
-  }
-
-  options("/*") {
-    response.setHeader(
-      "Access-Control-Allow-Headers", request.getHeader("Access-Control-Request-Headers")
-    )
-  }
+class DadosController extends ControllerBase {
   /*
    {
     "temperaturaAtual": 20,

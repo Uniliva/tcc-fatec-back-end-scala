@@ -1,12 +1,10 @@
 package controllers
 
 import com.github.aselab.activerecord.RecordInvalidException
-import com.typesafe.scalalogging.LazyLogging
 import com.github.aselab.activerecord.dsl._
 import services.UsuarioService
 import org.json4s._
 import org.scalatra._
-import org.scalatra.json.JacksonJsonSupport
 import services.UsuarioService.{UsuarioLogin, UsuarioNovo}
 
 class UsuarioController extends ControllerBase {

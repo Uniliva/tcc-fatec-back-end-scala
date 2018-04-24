@@ -1,29 +1,13 @@
 package controllers
 
 import com.github.aselab.activerecord.RecordInvalidException
-import com.typesafe.scalalogging.LazyLogging
-import org.json4s.{DefaultFormats, Formats}
-import org.scalatra.{CorsSupport, ScalatraServlet}
-import org.scalatra.json.JacksonJsonSupport
 import com.github.aselab.activerecord.dsl._
-import models.Sensor
 import org.json4s._
 import org.scalatra._
-import services.{DadosServices, SensorService}
+import services.{ SensorService}
 import services.SensorService.SensorNovo
 
-class SensorController extends ScalatraServlet with LazyLogging with CorsSupport with JacksonJsonSupport {
-  override protected implicit def jsonFormats: Formats = DefaultFormats
-
-  before() {
-    contentType = formats("json")
-  }
-
-  options("/*") {
-    response.setHeader(
-      "Access-Control-Allow-Headers", request.getHeader("Access-Control-Request-Headers")
-    )
-  }
+class SensorController extends ControllerBase{
   post("/novo") {
     try {
       logger.info("Adicionando novo Sensor.")

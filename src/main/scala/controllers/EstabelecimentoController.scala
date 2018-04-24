@@ -1,28 +1,13 @@
 package controllers
 
 import com.github.aselab.activerecord.RecordInvalidException
-import com.typesafe.scalalogging.LazyLogging
-import org.scalatra.{CorsSupport, MatchedRoute, ScalatraServlet}
 import com.github.aselab.activerecord.dsl._
 import org.json4s._
 import org.scalatra._
-import org.scalatra.json.JacksonJsonSupport
 import services.{DadosServices, EstabelecimentoService}
 import services.EstabelecimentoService.EstabelecimentoNovo
 
-class EstabelecimentoController extends ScalatraServlet with LazyLogging with CorsSupport with JacksonJsonSupport {
-  override protected implicit def jsonFormats: Formats = DefaultFormats
-
-  before() {
-    contentType = formats("json")
-  }
-
-  options("/*") {
-    response.setHeader(
-      "Access-Control-Allow-Headers", request.getHeader("Access-Control-Request-Headers")
-    )
-  }
-
+class EstabelecimentoController extends ControllerBase {
   post("/novo") {
     try {
       logger.info("Adicionando estabelecimento.")
