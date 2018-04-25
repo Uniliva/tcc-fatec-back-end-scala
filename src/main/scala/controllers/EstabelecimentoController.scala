@@ -20,7 +20,7 @@ class EstabelecimentoController extends ControllerBase {
   get("/todos") {
     Try {
       logger.info("Buscando todos os  estabelecimentos.")
-      EstabelecimentoService.buscaTodos().map(estabelecimento => Ok("estabelecimentos" -> estabelecimento.head.asJson)).orNull
+      EstabelecimentoService.buscaTodos().map(estabelecimento => Ok("estabelecimentos" -> estabelecimento)).orNull
     }
   }
 
@@ -28,7 +28,7 @@ class EstabelecimentoController extends ControllerBase {
     Try {
       logger.info("Buscando estabelecimento pelo ID.")
       val id = params("id").toLong
-      EstabelecimentoService.buscaEstabelecimentosPorId(id).map(estabelecimento => Ok("estabelecimento" -> estabelecimento.asJson)).orNull
+      EstabelecimentoService.buscaEstabelecimentosPorId(id).map(estabelecimento => Ok("estabelecimento" -> estabelecimento)).orNull
     }
   }
 
