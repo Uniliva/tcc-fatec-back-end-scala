@@ -10,7 +10,7 @@ import scala.util.Try
 
 class EstabelecimentoController extends ControllerBase {
   post("/novo") {
-    try {
+    Try {
       logger.info("Adicionando estabelecimento.")
       val usuario = parsedBody.extract[EstabelecimentoNovo]
       EstabelecimentoService.novo(usuario).map(estabelecimento => Ok("novo-estabelecimento" -> estabelecimento.asJson)).orNull
@@ -18,14 +18,14 @@ class EstabelecimentoController extends ControllerBase {
   }
 
   get("/todos") {
-    try {
+    Try {
       logger.info("Buscando todos os  estabelecimentos.")
       EstabelecimentoService.buscaTodos().map(estabelecimento => Ok("estabelecimentos" -> estabelecimento.head.asJson)).orNull
     }
   }
 
   get("/id/:id") {
-    try {
+    Try {
       logger.info("Buscando estabelecimento pelo ID.")
       val id = params("id").toLong
       EstabelecimentoService.buscaEstabelecimentosPorId(id).map(estabelecimento => Ok("estabelecimento" -> estabelecimento.asJson)).orNull
@@ -34,7 +34,7 @@ class EstabelecimentoController extends ControllerBase {
 
 
   get("/sensores/:id") {
-    try {
+    Try {
       logger.info("Buscando sensores de um estabelecimento pelo ID.")
       val id = params("id").toLong
       EstabelecimentoService.buscaSensoresPorId(id).map(sensores => Ok("Sensores-do-estabelecimento" -> sensores.asJson)).orNull
@@ -42,7 +42,7 @@ class EstabelecimentoController extends ControllerBase {
   }
 
   post("/atualizar") {
-    try {
+    Try {
       logger.info("Atualizando estabelecimento.")
       val estabelecimento = parsedBody.extract[EstabelecimentoNovo]
       EstabelecimentoService.atualizar(estabelecimento).map(estabelecimento => Ok("estabelecimento-atualizado" -> estabelecimento.asJson)).orNull
