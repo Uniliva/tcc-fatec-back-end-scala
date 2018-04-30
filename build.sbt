@@ -10,6 +10,10 @@ val ScalatraVersion = "2.6.+"
 
 resolvers += Classpaths.typesafeReleases
 
+resolvers += "lightshed-maven" at "http://dl.bintray.com/content/lightshed/maven"
+
+libraryDependencies += "ch.lightshed" %% "courier" % "0.1.4"
+
 libraryDependencies ++= Seq(
   "org.scalatra" %% "scalatra" % ScalatraVersion,
   "org.scalatra" %% "scalatra-scalatest" % ScalatraVersion % "test",

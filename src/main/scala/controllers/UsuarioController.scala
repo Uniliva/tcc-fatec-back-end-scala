@@ -1,6 +1,7 @@
 package controllers
 
 import com.github.aselab.activerecord.dsl._
+import comum.{EmailUtil, Util}
 import org.json4s._
 import org.scalatra._
 import services.UsuarioService
