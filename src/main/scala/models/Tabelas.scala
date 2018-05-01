@@ -6,7 +6,7 @@ import dsl._
 
 object Tabelas extends ActiveRecordTables{
   val usuarios = table[Usuario]("usuariosTB")
-  val dados = table[Dados]("DadosTB")
+  val dados = table[Dados]("dadosTB")
   val estabelecimento = table[Estabelecimento]("estabelecimentoTB")
   val sensor = table[Sensor]("sensorTB")
 }

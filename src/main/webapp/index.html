@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)file:///C:/Users/unili/Desktop/API_TCC.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" href="https://web.postman.co/prodash/img/apple-touch-icon.png">
+
+  <title>API de Serviço do TCC</title>
+
+  <style type="text/css">
+    #noscript-content {
+      background: white;
+      padding: 16px 32px;
+      border-radius: 3px;
+      max-width: 600px;
+      margin: 100px auto;
+      color: #282828;
+    }
+
+    #noscript-content p,
+    #noscript-content ul {
+      line-height: 1.7;
+    }
+
+    #noscript-content ul {
+      padding-left: 24px;
+    }
+
+    #noscript-content li {
+      margin: 8px 0;
+    }
+
+  </style>
+  <link href="/index_files/main.css" rel="stylesheet" type="text/css">
+  <link href="./index_files/css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body class="pm-main-body" cz-shortcut-listen="true" aria-hidden="true">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>&amp;lt;iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5M4SWB" height="0" width="0" style="display:none;visibility:hidden"&amp;gt;&amp;lt;/iframe&amp;gt;</noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div id="app-mount-point">
+      <div data-reactroot="" id="postman-pro-dashboard">       
+        <!-- react-empty: 194 -->
+        <main>
+          <div class="collection">
+
+            <div class="pm-tabs pm-tabs-primary docs-tabs">
+              <div class="pm-tab-list">
+                <button class="pm-tab pm-tab-active">Documentação</button>
+
+              </div>
+            </div>
+            <div>
+           
+              <div class="docs-body docs-body--double-col">
+
+                <div class="docs-item" id="88ff6038-dde6-45e7-a4de-6daa45b853e3">
+                  <div class="docs-desc">
+                    <h1 class="pm-h1 docs-desc-title docs-desc-title--head" id="introduction">API de serviços do TCC</h1>
+                    <div class="docs-desc-body pm-markdown">Segue abaixo os endpoints dos serviços </div>
+                  </div>
+                </div>
+                <div class="docs-item" id="2ca64a5d-dec9-4f3b-a1f2-ce5045b98578">
+                  <div class="docs-desc">
+                    <h2 class="pm-h2 docs-desc-title docs-desc-title--folder">Dados</h2>
+                    <div class="docs-desc-body pm-markdown"></div>
+                  </div>
+                </div>
+                <div class="docs-item" id="8ecfbb55-0658-4785-9b48-4210a8d51780">
+                  <div class="docs-desc">
+                    <div>
+                      <h2 class="pm-h2 docs-desc-title docs-desc-title--request">
+                        <span class="pm-method-color-get">
+                          <!-- react-text: 4438 -->GET
+                          <!-- /react-text -->
+                          <!-- react-text: 4439 -->
+                          <!-- /react-text -->
+                        </span>
+                        <!-- react-text: 4440 -->Todos os dados do sensor
+                        <!-- /react-text -->
+                      </h2>
+                      <div class="docs-desc-title__url">http://localhost:8060/dados/todos</div>
+                    </div>
+                    <div class="docs-desc-body">
+                      <div class="pm-markdown"></div>
+                      <!-- react-empty: 4444 -->
+                      <!-- react-empty: 4445 -->
+                      <!-- react-empty: 4446 -->
+                      <!-- react-empty: 4447 -->
+                    </div>
+                  </div>
+                  <div class="docs-example">
+                    <div class="docs-example__request">
+                      <div class="docs-example__snippet-header">
+                        <span class="docs-example__snippet-type">Example Request</span>
+                        <span class="docs-example__response-title" title="Todos os dados do sensor">Todos os dados do sensor</span>
+                      </div>
+                      <div class="pm-snippet-container">
+                        <div class="pm-snippet pm-snippet-wrap">
+                          <div class="pm-snippet-actions">
+
+                          </div>
+                          <pre class="pm-snippet-body"><code class="hljs curl go">curl --request GET \
+  --url http:<span class="hljs-comment">//localhost:8060/dados/todos</span></code></pre>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- react-empty: 4478 -->
+                  </div>
+                </div>
+                <div class="docs-item" id="fdd6c989-eb65-4575-bcf8-5f7433464f41">
+                  <div class="docs-desc">
+                    <div>
+                      <h2 class="pm-h2 docs-desc-title docs-desc-title--request">
+                        <span class="pm-method-color-post">
+                          <!-- react-text: 4484 -->POST
+                          <!-- /react-text -->
+                          <!-- react-text: 4485 -->
+                          <!-- /react-text -->
+                        </span>
+                        <!-- react-text: 4486 -->Criar dados de sensor
+                        <!-- /react-text -->
+                      </h2>
+                      <div class="docs-desc-title__url">http://localhost:8060/dados/novo</div>
+                    </div>
+                    <div class="docs-desc-body">
+                      <div class="pm-markdown"></div>
+                      <div class="docs-request-headers">
+                        <h4 class="pm-h4">Headers</h4>
+                        <table class="pm-table docs-request-table">
+                          <tbody>
+                            <tr>
+                              <td class="weight--medium">Content-Type</td>
+                              <td>
+                                <!-- react-text: 4497 -->application/json
+                                <!-- /react-text -->
+                                <!-- react-empty: 4498 -->
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- react-empty: 4499 -->
+                      <!-- react-empty: 4500 -->
+                      <div class="docs-request-body">
+                        <h4 class="pm-h4 docs-request-body__title">Body</h4>
+                        <span class="docs-request-body__mode push-half--left">raw (application/json)</span>
+                        <pre class="docs-request-body__raw"><code> {
+    "temperaturaAtual":2,
+    "dataAtual": "2018-04-24T18:04:22Z",
+    "temEnergia": true,
+    "sensorId": 2
+}</code></pre>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="docs-example">
+                    <div class="docs-example__request">
+                      <div class="docs-example__snippet-header">
+                        <span class="docs-example__snippet-type">Example Request</span>
+                        <span class="docs-example__response-title" title="Criar dados de sensor">Criar dados de sensor</span>
+                      </div>
+                      <div class="pm-snippet-container">
+                        <div class="pm-snippet pm-snippet-wrap">
+
+                          <pre class="pm-snippet-body"><code class="hljs curl ruby">curl --request POST \
+  --url <span class="hljs-symbol">http:</span>/<span class="hljs-regexp">/localhost:8060/dados</span><span class="hljs-regexp">/novo \
+  --header 'Content-Type: application/json</span><span class="hljs-string">' \
+  --data '</span> {
+    <span class="hljs-string">"temperaturaAtual"</span><span class="hljs-symbol">:</span><span class="hljs-number">2</span>,
+    <span class="hljs-string">"dataAtual"</span>: <span class="hljs-string">"2018-04-24T18:04:22Z"</span>,
+    <span class="hljs-string">"temEnergia"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">"sensorId"</span>: <span class="hljs-number">2</span>
+}<span class="hljs-string">'</span></code></pre>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- react-empty: 4536 -->
+                  </div>
+                </div>
+                <div class="docs-item" id="d3ed8c56-bbac-453c-94eb-d6f228c92fab">
+                  <div class="docs-desc">
+                    <div>
+                      <h2 class="pm-h2 docs-desc-title docs-desc-title--request">
+                        <span class="pm-method-color-get">
+                          <!-- react-text: 4542 -->GET
+                          <!-- /react-text -->
+                          <!-- react-text: 4543 -->
+                          <!-- /react-text -->
+                        </span>
+                        <!-- react-text: 4544 -->Busca por id
+                        <!-- /react-text -->
+                      </h2>
+                      <div class="docs-desc-title__url">http://localhost:8060/dados/id/1</div>
+                    </div>
+                    <div class="docs-desc-body">
+                      <div class="pm-markdown"></div>
+                      <!-- react-empty: 4548 -->
+                      <!-- react-empty: 4549 -->
+                      <!-- react-empty: 4550 -->
+                      <!-- react-empty: 4551 -->
+                    </div>
+                  </div>
+                  <div class="docs-example">
+                    <div class="docs-example__request">
+                      <div class="docs-example__snippet-header">
+                        <span class="docs-example__snippet-type">Example Request</span>
+                        <span class="docs-example__response-title" title="Busca por id">Busca por id</span>
+                      </div>
+                      <div class="pm-snippet-container">
+                        <div class="pm-snippet pm-snippet-wrap">
+
+                          <pre class="pm-snippet-body"><code class="hljs curl ruby">curl --request GET \
+  --url <span class="hljs-symbol">http:</span>/<span class="hljs-regexp">/localhost:8060/dados</span><span class="hljs-regexp">/id/</span><span class="hljs-number">1</span></code></pre>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- react-empty: 4582 -->
+                  </div>
+                </div>
+                <div class="docs-item" id="5f05dff1-6b1c-47f3-9dc8-9f5dd2fc8c59">
+                  <div class="docs-desc">
+                    <div>
+                      <h2 class="pm-h2 docs-desc-title docs-desc-title--request">
+                        <span class="pm-method-color-get">
+                          <!-- react-text: 4588 -->GET
+                          <!-- /react-text -->
+                          <!-- react-text: 4589 -->
+                          <!-- /react-text -->
+                        </span>
+                        <!-- react-text: 4590 -->Busca um quantidade de dados de um sensor
+                        <!-- /react-text -->
+                      </h2>
+                      <div class="docs-desc-title__url">http://localhost:8060/dados/sensor/1/quantidade/10</div>
+                    </div>
+                    <div class="docs-desc-body">
+                      <div class="pm-markdown"></div>
+                      <!-- react-empty: 4594 -->
+                      <!-- react-empty: 4595 -->
+                      <!-- react-empty: 4596 -->
+                      <!-- react-empty: 4597 -->
+                    </div>
+                  </div>
+                  <div class="docs-example">
+                    <div class="docs-example__request">
+                      <div class="docs-example__snippet-header">
+                        <span class="docs-example__snippet-type">Example Request</span>
+                        <span class="docs-example__response-title" title="Busca um quantidade de dados de um sensor">Busca um quantidade de dados de um sensor</span>
+                      </div>
+                      <div class="pm-snippet-container">
+                        <div class="pm-snippet pm-snippet-wrap">
+
+                          <pre class="pm-snippet-body"><code class="hljs curl ruby">curl --request GET \
+  --url <span class="hljs-symbol">http:</span>/<span class="hljs-regexp">/localhost:8060/dados</span><span class="hljs-regexp">/sensor/</span><span class="hljs-number">1</span>/quantidade/<span class="hljs-number">10</span></code></pre>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- react-empty: 4628 -->
+                  </div>
+                </div>
+                <div class="docs-item" id="9f97a95f-68e7-97a7-7f6c-33fd7f6e543f">
+                  <div class="docs-desc">
+                    <div>
+                      <h2 class="pm-h2 docs-desc-title docs-desc-title--request">
+                        <span class="pm-method-color-get">
+                          <!-- react-text: 4634 -->GET
+                          <!-- /react-text -->
+                          <!-- react-text: 4635 -->
+                          <!-- /react-text -->
+                        </span>
+                        <!-- react-text: 4636 -->Todos os dados
+                        <!-- /react-text -->
+                      </h2>
+                      <div class="docs-desc-title__url">http://localhost:8060/dados/todos</div>
+                    </div>
+                    <div class="docs-desc-body">
+                      <div class="pm-markdown"></div>
+                      <div class="docs-request-headers">
+                        <h4 class="pm-h4">Headers</h4>
+                        <table class="pm-table docs-request-table">
+                          <tbody>
+                            <tr>
+                              <td class="weight--medium">Content-Type</td>
+                              <td>
+                                <!-- react-text: 4647 -->application/json
+                                <!-- /react-text -->
+                                <!-- react-empty: 4648 -->
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- react-empty: 4649 -->
+                      <!-- react-empty: 4650 -->
+                      <!-- react-empty: 4651 -->
+                    </div>
+                  </div>
+                  <div class="docs-example">
+                    <div class="docs-example__request">
+                      <div class="docs-example__snippet-header">
+                        <span class="docs-example__snippet-type">Example Request</span>
+                        <span class="docs-example__response-title" title="Todos os dados">Todos os dados</span>
+                      </div>
+                      <div class="pm-snippet-container">
+                        <div class="pm-snippet pm-snippet-wrap">
+
+                          <pre class="pm-snippet-body"><code class="hljs curl go">curl --request GET \
+  --url http:<span class="hljs-comment">//localhost:8060/dados/todos \</span>
+  --header <span class="hljs-string">'Content-Type: application/json'</span></code></pre>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- react-empty: 4682 -->
+                  </div>
+                </div>
+                <div class="docs-item" id="80b018ef-1f24-4bd7-bba3-6d25621ce5b3">
+                  <div class="docs-desc">
+                    <h2 class="pm-h2 docs-desc-title docs-desc-title--folder">Estabelecimento</h2>
+                    <div class="docs-desc-body pm-markdown"></div>
+                  </div>
+                </div>
+                <div class="docs-item" id="717104bd-8f49-4040-8618-5d88118995dd">
+                  <div class="docs-desc">
+                    <div>
+                      <h2 class="pm-h2 docs-desc-title docs-desc-title--request">
+                        <span class="pm-method-color-get">
+                          <!-- react-text: 4692 -->GET
+                          <!-- /react-text -->
+                          <!-- react-text: 4693 -->
+                          <!-- /react-text -->
+                        </span>
+                        <!-- react-text: 4694 -->Busca todos os estabelecimentos
+                        <!-- /react-text -->
+                      </h2>
+                      <div class="docs-desc-title__url">http://localhost:8060/estabelecimentos/todos</div>
+                    </div>
+                    <div class="docs-desc-body">
+                      <div class="pm-markdown"></div>
+                      <!-- react-empty: 4698 -->
+                      <!-- react-empty: 4699 -->
+                      <!-- react-empty: 4700 -->
+                      <!-- react-empty: 4701 -->
+                    </div>
+                  </div>
+                  <div class="docs-example">
+                    <div class="docs-example__request">
+                      <div class="docs-example__snippet-header">
+                        <span class="docs-example__snippet-type">Example Request</span>
+                        <span class="docs-example__response-title" title="Busca todos os estabelecimentos">Busca todos os estabelecimentos</span>
+                      </div>
+                      <div class="pm-snippet-container">
+                        <div class="pm-snippet pm-snippet-wrap">
+
+                          <pre class="pm-snippet-body"><code class="hljs curl go">curl --request GET \
+  --url http:<span class="hljs-comment">//localhost:8060/estabelecimentos/todos</span></code></pre>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- react-empty: 4732 -->
+                  </div>
+                </div>
+                <div class="docs-item" id="122220e4-9ad0-42ad-88ef-eea16f14d690">
+                  <div class="docs-desc">
+                    <div>
+                      <h2 class="pm-h2 docs-desc-title docs-desc-title--request">
+                        <span class="pm-method-color-post">
+                          <!-- react-text: 4738 -->POST
+                          <!-- /react-text -->
+                          <!-- react-text: 4739 -->
+                          <!-- /react-text -->
+                        </span>
+                        <!-- react-text: 4740 -->Adicinando estabelcimento
+                        <!-- /react-text -->
+                      </h2>
+                      <div class="docs-desc-title__url">http://localhost:8060/estabelecimentos/novo</div>
+                    </div>
+                    <div class="docs-desc-body">
+                      <div class="pm-markdown"></div>
+                      <div class="docs-request-headers">
+                        <h4 class="pm-h4">Headers</h4>
+                        <table class="pm-table docs-request-table">
+                          <tbody>
+                            <tr>
+                              <td class="weight--medium">Content-Type</td>
+                              <td>
+                                <!-- react-text: 4751 -->application/json
+                                <!-- /react-text -->
+                                <!-- react-empty: 4752 -->
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- react-empty: 4753 -->
+                      <!-- react-empty: 4754 -->
+                      <div class="docs-request-body">
+                        <h4 class="pm-h4 docs-request-body__title">Body</h4>
+                        <span class="docs-request-body__mode push-half--left">raw (application/json)</span>
+                        <pre class="docs-request-body__raw"><code>  {
+    "nome": "Supermecado Chama",
+    "endereco": "Rua marques de Teixeira 417"
+}</code></pre>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="docs-example">
+                    <div class="docs-example__request">
+                      <div class="docs-example__snippet-header">
+                        <span class="docs-example__snippet-type">Example Request</span>
+                        <span class="docs-example__response-title" title="Adicinando estabelcimento">Adicinando estabelcimento</span>
+                      </div>
+                      <div class="pm-snippet-container">
+                        <div class="pm-snippet pm-snippet-wrap">
+
+                          <pre class="pm-snippet-body"><code class="hljs curl ruby">curl --request POST \
+  --url <span class="hljs-symbol">http:</span>/<span class="hljs-regexp">/localhost:8060/estabelecimentos</span><span class="hljs-regexp">/novo \
+  --header 'Content-Type: application/json</span><span class="hljs-string">' \
+  --data '</span>  {
+    <span class="hljs-string">"nome"</span>: <span class="hljs-string">"Supermecado Chama"</span>,
+    <span class="hljs-string">"endereco"</span>: <span class="hljs-string">"Rua marques de Teixeira 417"</span>
+}<span class="hljs-string">'</span></code></pre>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- react-empty: 4790 -->
+                  </div>
+                </div>
+                <div class="docs-item" id="45f08c92-7d4e-4651-a580-5a0cf7d94c01">
+                  <div class="docs-desc">
+                    <div>
+                      <h2 class="pm-h2 docs-desc-title docs-desc-title--request">
+                        <span class="pm-method-color-post">
+                          <!-- react-text: 4796 -->POST
+                          <!-- /react-text -->
+                          <!-- react-text: 4797 -->
+                          <!-- /react-text -->
+                        </span>
+                        <!-- react-text: 4798 -->Atualizar estabelecimento
+                        <!-- /react-text -->
+                      </h2>
+                      <div class="docs-desc-title__url">http://localhost:8060/estabelecimentos/atualizar</div>
+                    </div>
+                    <div class="docs-desc-body">
+                      <div class="pm-markdown"></div>
+                      <div class="docs-request-headers">
+                        <h4 class="pm-h4">Headers</h4>
+                        <table class="pm-table docs-request-table">
+                          <tbody>
+                            <tr>
+                              <td class="weight--medium">Content-Type</td>
+                              <td>
+                                <!-- react-text: 4809 -->application/json
+                                <!-- /react-text -->
+                                <!-- react-empty: 4810 -->
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- react-empty: 4811 -->
+                      <!-- react-empty: 4812 -->
+                      <div class="docs-request-body">
+                        <h4 class="pm-h4 docs-request-body__title">Body</h4>
+                        <span class="docs-request-body__mode push-half--left">raw (application/json)</span>
+                        <pre class="docs-request-body__raw"><code>  {
+    "nome": "Nova alteração",
+    "endereco": "Rua marques",
+    "id":1
+}</code></pre>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="docs-example">
+                    <div class="docs-example__request">
+                      <div class="docs-example__snippet-header">
+                        <span class="docs-example__snippet-type">Example Request</span>
+                        <span class="docs-example__response-title" title="Atualizar estabelecimento">Atualizar estabelecimento</span>
+                      </div>
+                      <div class="pm-snippet-container">
+                        <div class="pm-snippet pm-snippet-wrap">
+
+                          <pre class="pm-snippet-body"><code class="hljs curl ruby">curl --request POST \
+  --url <span class="hljs-symbol">http:</span>/<span class="hljs-regexp">/localhost:8060/estabelecimentos</span><span class="hljs-regexp">/atualizar \
+  --header 'Content-Type: application/json</span><span class="hljs-string">' \
+  --data '</span>  {
+    <span class="hljs-string">"nome"</span>: <span class="hljs-string">"Nova alteração"</span>,
+    <span class="hljs-string">"endereco"</span>: <span class="hljs-string">"Rua marques"</span>,
+    <span class="hljs-string">"id"</span><span class="hljs-symbol">:</span><span class="hljs-number">1</span>
+}<span class="hljs-string">'</span></code></pre>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- react-empty: 4848 -->
+                  </div>
+                </div>
+                <div class="docs-item" id="eaea6f84-fddb-4a52-8733-1860a9682686">
+                  <div class="docs-desc">
+                    <div>
+                      <h2 class="pm-h2 docs-desc-title docs-desc-title--request">
+                        <span class="pm-method-color-delete">
+                          <!-- react-text: 4854 -->DELETE
+                          <!-- /react-text -->
+                          <!-- react-text: 4855 -->
+                          <!-- /react-text -->
+                        </span>
+                        <!-- react-text: 4856 -->Remove Estabelecimento pelo id
+                        <!-- /react-text -->
+                      </h2>
+                      <div class="docs-desc-title__url">http://localhost:8060/estabelecimentos/id/2</div>
+                    </div>
+                    <div class="docs-desc-body">
+                      <div class="pm-markdown"></div>
+                      <!-- react-empty: 4860 -->
+                      <!-- react-empty: 4861 -->
+                      <!-- react-empty: 4862 -->
+                      <!-- react-empty: 4863 -->
+                    </div>
+                  </div>
+                  <div class="docs-example">
+                    <div class="docs-example__request">
+                      <div class="docs-example__snippet-header">
+                        <span class="docs-example__snippet-type">Example Request</span>
+                        <span class="docs-example__response-title" title="Remove Estabelecimento pelo id">Remove Estabelecimento pelo id</span>
+                      </div>
+                      <div class="pm-snippet-container">
+                        <div class="pm-snippet pm-snippet-wrap">
+
+                          <pre class="pm-snippet-body"><code class="hljs curl ruby">curl --request DELETE \
+  --url <span class="hljs-symbol">http:</span>/<span class="hljs-regexp">/localhost:8060/estabelecimentos</span><span class="hljs-regexp">/id/</span><span class="hljs-number">2</span></code></pre>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- react-empty: 4894 -->
+                  </div>
+                </div>
+                <div class="docs-item" id="4653b393-89b5-45a9-9ef6-a3a45fd91353">
+                  <div class="docs-desc">
+                    <div>
+                      <h2 class="pm-h2 docs-desc-title docs-desc-title--request">
+                        <span class="pm-method-color-post">
+                          <!-- react-text: 4900 -->POST
+                          <!-- /react-text -->
+                          <!-- react-text: 4901 -->
+                          <!-- /react-text -->
+                        </span>
+                        <!-- react-text: 4902 -->Adicionando sensor a um estabelecimento
+                        <!-- /react-text -->
+                      </h2>
+                      <div class="docs-desc-title__url">http://localhost:8060/estabelecimentos/adicionar-sensor/1/sensor/5</div>
+                    </div>
+                    <div class="docs-desc-body">
+                      <div class="pm-markdown"></div>
+                      <div class="docs-request-headers">
+                        <h4 class="pm-h4">Headers</h4>
+                        <table class="pm-table docs-request-table">
+                          <tbody>
+                            <tr>
+                              <td class="weight--medium">Content-Type</td>
+                              <td>
+                                <!-- react-text: 4913 -->application/json
+                                <!-- /react-text -->
+                                <!-- react-empty: 4914 -->
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- react-empty: 4915 -->
+                      <!-- react-empty: 4916 -->
+                      <!-- react-empty: 4917 -->
+                    </div>
+                  </div>
+                  <div class="docs-example">
+                    <div class="docs-example__request">
+                      <div class="docs-example__snippet-header">
+                        <span class="docs-example__snippet-type">Example Request</span>
+                        <span class="docs-example__response-title" title="Adicionando sensor a um estabelecimento">Adicionando sensor a um estabelecimento</span>
+                      </div>
+                      <div class="pm-snippet-container">
+                        <div class="pm-snippet pm-snippet-wrap">
+
+                          <pre class="pm-snippet-body"><code class="hljs curl ruby">curl --request POST \
+  --url <span class="hljs-symbol">http:</span>/<span class="hljs-regexp">/localhost:8060/estabelecimentos</span><span class="hljs-regexp">/adicionar-sensor/</span><span class="hljs-number">1</span>/sensor/<span class="hljs-number">5</span> \
+  --header <span class="hljs-string">'Content-Type: application/json'</span></code></pre>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- react-empty: 4948 -->
+                  </div>
+                </div>
+                <div class="docs-item" id="908b08bf-2ce1-468c-856f-172ec674043b">
+                  <div class="docs-desc">
+                    <div>
+                      <h2 class="pm-h2 docs-desc-title docs-desc-title--request">
+                        <span class="pm-method-color-get">
+                          <!-- react-text: 4954 -->GET
+                          <!-- /react-text -->
+                          <!-- react-text: 4955 -->
+                          <!-- /react-text -->
+                        </span>
+                        <!-- react-text: 4956 -->Buscar sensores de estabelecimento
+                        <!-- /react-text -->
+                      </h2>
+                      <div class="docs-desc-title__url">http://localhost:8060/estabelecimentos/sensores/1</div>
+                    </div>
+                    <div class="docs-desc-body">
+                      <div class="pm-markdown"></div>
+                      <!-- react-empty: 4960 -->
+                      <!-- react-empty: 4961 -->
+                      <!-- react-empty: 4962 -->
+                      <!-- react-empty: 4963 -->
+                    </div>
+                  </div>
+                  <div class="docs-example">
+                    <div class="docs-example__request">
+                      <div class="docs-example__snippet-header">
+                        <span class="docs-example__snippet-type">Example Request</span>
+                        <span class="docs-example__response-title" title="Buscar sensores de estabelecimento">Buscar sensores de estabelecimento</span>
+                      </div>
+                      <div class="pm-snippet-container">
+                        <div class="pm-snippet pm-snippet-wrap">
+
+                          <pre class="pm-snippet-body"><code class="hljs curl ruby">curl --request GET \
+  --url <span class="hljs-symbol">http:</span>/<span class="hljs-regexp">/localhost:8060/estabelecimentos</span><span class="hljs-regexp">/sensores/</span><span class="hljs-number">1</span></code></pre>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- react-empty: 4994 -->
+                  </div>
+                </div>
+                <div class="docs-item" id="389341ec-e269-46f0-b4af-462f403803b4">
+                  <div class="docs-desc">
+                    <div>
+                      <h2 class="pm-h2 docs-desc-title docs-desc-title--request">
+                        <span class="pm-method-color-get">
+                          <!-- react-text: 5000 -->GET
+                          <!-- /react-text -->
+                          <!-- react-text: 5001 -->
+                          <!-- /react-text -->
+                        </span>
+                        <!-- react-text: 5002 -->Buscar estabelecimento id
+                        <!-- /react-text -->
+                      </h2>
+                      <div class="docs-desc-title__url">http://localhost:8060/estabelecimentos/id/1</div>
+                    </div>
+                    <div class="docs-desc-body">
+                      <div class="pm-markdown"></div>
+                      <!-- react-empty: 5006 -->
+                      <!-- react-empty: 5007 -->
+                      <!-- react-empty: 5008 -->
+                      <!-- react-empty: 5009 -->
+                    </div>
+                  </div>
+                  <div class="docs-example">
+                    <div class="docs-example__request">
+                      <div class="docs-example__snippet-header">
+                        <span class="docs-example__snippet-type">Example Request</span>
+                        <span class="docs-example__response-title" title="Buscar  estabelecimento id">Buscar estabelecimento id</span>
+                      </div>
+                      <div class="pm-snippet-container">
+                        <div class="pm-snippet pm-snippet-wrap">
+
+                          <pre class="pm-snippet-body"><code class="hljs curl ruby">curl --request GET \
+  --url <span class="hljs-symbol">http:</span>/<span class="hljs-regexp">/localhost:8060/estabelecimentos</span><span class="hljs-regexp">/id/</span><span class="hljs-number">1</span></code></pre>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- react-empty: 5040 -->
+                  </div>
+                </div>
+                <div class="docs-item" id="acd39ae2-184a-4c34-ad99-6c4eb8c4edba">
+                  <div class="docs-desc">
+                    <h2 class="pm-h2 docs-desc-title docs-desc-title--folder">Usuario</h2>
+                    <!-- react-empty: 5044 -->
+                  </div>
+                </div>
+                <div class="docs-item" id="54d9029c-9460-462a-9532-66cdfa98dce1">
+                  <div class="docs-desc">
+                    <div>
+                      <h2 class="pm-h2 docs-desc-title docs-desc-title--request">
+                        <span class="pm-method-color-delete">
+                          <!-- react-text: 5050 -->DELETE
+                          <!-- /react-text -->
+                          <!-- react-text: 5051 -->
+                          <!-- /react-text -->
+                        </span>
+                        <!-- react-text: 5052 -->Remove usario pelo ID
+                        <!-- /react-text -->
+                      </h2>
+                      <div class="docs-desc-title__url">http://localhost:8060/usuarios/id/1</div>
+                    </div>
+                    <div class="docs-desc-body">
+                      <div class="pm-markdown"></div>
+                      <!-- react-empty: 5056 -->
+                      <!-- react-empty: 5057 -->
+                      <!-- react-empty: 5058 -->
+                      <!-- react-empty: 5059 -->
+                    </div>
+                  </div>
+                  <div class="docs-example">
+                    <div class="docs-example__request">
+                      <div class="docs-example__snippet-header">
+                        <span class="docs-example__snippet-type">Example Request</span>
+                        <span class="docs-example__response-title" title="Remove usario pelo ID">Remove usario pelo ID</span>
+                      </div>
+                      <div class="pm-snippet-container">
+                        <div class="pm-snippet pm-snippet-wrap">
+
+                          <pre class="pm-snippet-body"><code class="hljs curl ruby">curl --request DELETE \
+  --url <span class="hljs-symbol">http:</span>/<span class="hljs-regexp">/localhost:8060/usuarios</span><span class="hljs-regexp">/id/</span><span class="hljs-number">1</span></code></pre>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- react-empty: 5090 -->
+                  </div>
+                </div>
+                <div class="docs-item" id="1ca99890-0a86-a5d1-bfff-3bef260953cb">
+                  <div class="docs-desc">
+                    <div>
+                      <h2 class="pm-h2 docs-desc-title docs-desc-title--request">
+                        <span class="pm-method-color-get">
+                          <!-- react-text: 5096 -->GET
+                          <!-- /react-text -->
+                          <!-- react-text: 5097 -->
+                          <!-- /react-text -->
+                        </span>
+                        <!-- react-text: 5098 -->Todos os usuarios
+                        <!-- /react-text -->
+                      </h2>
+                      <div class="docs-desc-title__url">http://localhost:8060/usuarios/todos</div>
+                    </div>
+                    <div class="docs-desc-body">
+                      <div class="pm-markdown"></div>
+                      <!-- react-empty: 5102 -->
+                      <!-- react-empty: 5103 -->
+                      <!-- react-empty: 5104 -->
+                      <!-- react-empty: 5105 -->
+                    </div>
+                  </div>
+                  <div class="docs-example">
+                    <div class="docs-example__request">
+                      <div class="docs-example__snippet-header">
+                        <span class="docs-example__snippet-type">Example Request</span>
+                        <span class="docs-example__response-title" title="Todos os usuarios">Todos os usuarios</span>
+                      </div>
+                      <div class="pm-snippet-container">
+                        <div class="pm-snippet pm-snippet-wrap">
+
+                          <pre class="pm-snippet-body"><code class="hljs curl go">curl --request GET \
+  --url http:<span class="hljs-comment">//localhost:8060/usuarios/todos</span></code></pre>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- react-empty: 5136 -->
+                  </div>
+                </div>
+                <div class="docs-item" id="f630e66f-c16b-e1b7-24d8-c673a317a232">
+                  <div class="docs-desc">
+                    <div>
+                      <h2 class="pm-h2 docs-desc-title docs-desc-title--request">
+                        <span class="pm-method-color-post">
+                          <!-- react-text: 5142 -->POST
+                          <!-- /react-text -->
+                          <!-- react-text: 5143 -->
+                          <!-- /react-text -->
+                        </span>
+                        <!-- react-text: 5144 -->Atualizar usuario
+                        <!-- /react-text -->
+                      </h2>
+                      <div class="docs-desc-title__url">http://localhost:8060/usuarios/atualizar</div>
+                    </div>
+                    <div class="docs-desc-body">
+                      <div class="pm-markdown"></div>
+                      <div class="docs-request-headers">
+                        <h4 class="pm-h4">Headers</h4>
+                        <table class="pm-table docs-request-table">
+                          <tbody>
+                            <tr>
+                              <td class="weight--medium">Content-Type</td>
+                              <td>
+                                <!-- react-text: 5155 -->application/json
+                                <!-- /react-text -->
+                                <!-- react-empty: 5156 -->
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- react-empty: 5157 -->
+                      <!-- react-empty: 5158 -->
+                      <div class="docs-request-body">
+                        <h4 class="pm-h4 docs-request-body__title">Body</h4>
+                        <span class="docs-request-body__mode push-half--left">raw (application/json)</span>
+                        <pre class="docs-request-body__raw"><code>{
+        "isAdmin": true,
+        "email": "artur@umoniotr.com.br",
+        "id": 1,
+        "senha": "1234",
+        "nome": "artur"
+    }</code></pre>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="docs-example">
+                    <div class="docs-example__request">
+                      <div class="docs-example__snippet-header">
+                        <span class="docs-example__snippet-type">Example Request</span>
+                        <span class="docs-example__response-title" title="Atualizar usuario">Atualizar usuario</span>
+                      </div>
+                      <div class="pm-snippet-container">
+                        <div class="pm-snippet pm-snippet-wrap">
+
+                          <pre class="pm-snippet-body"><code class="hljs curl ruby">curl --request POST \
+  --url <span class="hljs-symbol">http:</span>/<span class="hljs-regexp">/localhost:8060/usuarios</span><span class="hljs-regexp">/atualizar \
+  --header 'Content-Type: application/json</span><span class="hljs-string">' \
+  --data '</span>{
+        <span class="hljs-string">"isAdmin"</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-string">"email"</span>: <span class="hljs-string">"artur@umoniotr.com.br"</span>,
+        <span class="hljs-string">"id"</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-string">"senha"</span>: <span class="hljs-string">"1234"</span>,
+        <span class="hljs-string">"nome"</span>: <span class="hljs-string">"artur"</span>
+    }<span class="hljs-string">'</span></code></pre>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- react-empty: 5194 -->
+                  </div>
+                </div>
+                <div class="docs-item" id="abb42d89-a5b2-a070-adc8-414503cc6f84">
+                  <div class="docs-desc">
+                    <div>
+                      <h2 class="pm-h2 docs-desc-title docs-desc-title--request">
+                        <span class="pm-method-color-post">
+                          <!-- react-text: 5200 -->POST
+                          <!-- /react-text -->
+                          <!-- react-text: 5201 -->
+                          <!-- /react-text -->
+                        </span>
+                        <!-- react-text: 5202 -->Login usaurio
+                        <!-- /react-text -->
+                      </h2>
+                      <div class="docs-desc-title__url">http://localhost:8060/usuarios/login</div>
+                    </div>
+                    <div class="docs-desc-body">
+                      <div class="pm-markdown"></div>
+                      <div class="docs-request-headers">
+                        <h4 class="pm-h4">Headers</h4>
+                        <table class="pm-table docs-request-table">
+                          <tbody>
+                            <tr>
+                              <td class="weight--medium">Content-Type</td>
+                              <td>
+                                <!-- react-text: 5213 -->application/json
+                                <!-- /react-text -->
+                                <!-- react-empty: 5214 -->
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- react-empty: 5215 -->
+                      <!-- react-empty: 5216 -->
+                      <div class="docs-request-body">
+                        <h4 class="pm-h4 docs-request-body__title">Body</h4>
+                        <span class="docs-request-body__mode push-half--left">raw (application/json)</span>
+                        <pre class="docs-request-body__raw"><code>{
+      
+        "email": "artur@umoniotr.com.br",
+        "senha": "1234"
+    }</code></pre>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="docs-example">
+                    <div class="docs-example__request">
+                      <div class="docs-example__snippet-header">
+                        <span class="docs-example__snippet-type">Example Request</span>
+                        <span class="docs-example__response-title" title="Login usaurio">Login usaurio</span>
+                      </div>
+                      <div class="pm-snippet-container">
+                        <div class="pm-snippet pm-snippet-wrap">
+
+                          <pre class="pm-snippet-body"><code class="hljs curl ruby">curl --request POST \
+  --url <span class="hljs-symbol">http:</span>/<span class="hljs-regexp">/localhost:8060/usuarios</span><span class="hljs-regexp">/login \
+  --header 'Content-Type: application/json</span><span class="hljs-string">' \
+  --data '</span>{
+      
+        <span class="hljs-string">"email"</span>: <span class="hljs-string">"artur@umoniotr.com.br"</span>,
+        <span class="hljs-string">"senha"</span>: <span class="hljs-string">"1234"</span>
+    }<span class="hljs-string">'</span></code></pre>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- react-empty: 5252 -->
+                  </div>
+                </div>
+                <div class="docs-item" id="43eda27a-7609-4870-823c-27ace8a0b3cc">
+                  <div class="docs-desc">
+                    <div>
+                      <h2 class="pm-h2 docs-desc-title docs-desc-title--request">
+                        <span class="pm-method-color-post">
+                          <!-- react-text: 5258 -->POST
+                          <!-- /react-text -->
+                          <!-- react-text: 5259 -->
+                          <!-- /react-text -->
+                        </span>
+                        <!-- react-text: 5260 -->novo usuario
+                        <!-- /react-text -->
+                      </h2>
+                      <div class="docs-desc-title__url">http://localhost:8060/usuarios/novo</div>
+                    </div>
+                    <div class="docs-desc-body">
+                      <div class="pm-markdown"></div>
+                      <div class="docs-request-headers">
+                        <h4 class="pm-h4">Headers</h4>
+                        <table class="pm-table docs-request-table">
+                          <tbody>
+                            <tr>
+                              <td class="weight--medium">Content-Type</td>
+                              <td>
+                                <!-- react-text: 5271 -->application/json
+                                <!-- /react-text -->
+                                <!-- react-empty: 5272 -->
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- react-empty: 5273 -->
+                      <!-- react-empty: 5274 -->
+                      <div class="docs-request-body">
+                        <h4 class="pm-h4 docs-request-body__title">Body</h4>
+                        <span class="docs-request-body__mode push-half--left">raw (application/json)</span>
+                        <pre class="docs-request-body__raw"><code>{
+        "isAdmin": true,
+        "email": "artur@umoniotr.com.br",
+        "id": 1,
+        "senha": "12345678",
+        "nome": "artur"
+    }</code></pre>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="docs-example">
+                    <div class="docs-example__request">
+                      <div class="docs-example__snippet-header">
+                        <span class="docs-example__snippet-type">Example Request</span>
+                        <span class="docs-example__response-title" title="novo usuario">novo usuario</span>
+                      </div>
+                      <div class="pm-snippet-container">
+                        <div class="pm-snippet pm-snippet-wrap">
+
+                          <pre class="pm-snippet-body"><code class="hljs curl ruby">curl --request POST \
+  --url <span class="hljs-symbol">http:</span>/<span class="hljs-regexp">/localhost:8060/usuarios</span><span class="hljs-regexp">/novo \
+  --header 'Content-Type: application/json</span><span class="hljs-string">' \
+  --data '</span>{
+        <span class="hljs-string">"isAdmin"</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-string">"email"</span>: <span class="hljs-string">"artur@umoniotr.com.br"</span>,
+        <span class="hljs-string">"id"</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-string">"senha"</span>: <span class="hljs-string">"12345678"</span>,
+        <span class="hljs-string">"nome"</span>: <span class="hljs-string">"artur"</span>
+    }<span class="hljs-string">'</span></code></pre>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- react-empty: 5310 -->
+                  </div>
+                </div>
+                <div class="docs-item" id="ad9b1aef-a868-4ab2-95d9-4403cd4fac84">
+                  <div class="docs-desc">
+                    <h2 class="pm-h2 docs-desc-title docs-desc-title--folder">sensores</h2>
+                    <div class="docs-desc-body pm-markdown"></div>
+                  </div>
+                </div>
+                <div class="docs-item" id="5894f1e2-23d9-4415-bd1f-e4691d54b10f">
+                  <div class="docs-desc">
+                    <div>
+                      <h2 class="pm-h2 docs-desc-title docs-desc-title--request">
+                        <span class="pm-method-color-get">
+                          <!-- react-text: 5320 -->GET
+                          <!-- /react-text -->
+                          <!-- react-text: 5321 -->
+                          <!-- /react-text -->
+                        </span>
+                        <!-- react-text: 5322 -->Buscando sensor pelo ID
+                        <!-- /react-text -->
+                      </h2>
+                      <div class="docs-desc-title__url">http://localhost:8060/sensores/id/1</div>
+                    </div>
+                    <div class="docs-desc-body">
+                      <div class="pm-markdown"></div>
+                      <!-- react-empty: 5326 -->
+                      <!-- react-empty: 5327 -->
+                      <!-- react-empty: 5328 -->
+                      <!-- react-empty: 5329 -->
+                    </div>
+                  </div>
+                  <div class="docs-example">
+                    <div class="docs-example__request">
+                      <div class="docs-example__snippet-header">
+                        <span class="docs-example__snippet-type">Example Request</span>
+                        <span class="docs-example__response-title" title="Buscando sensor pelo ID">Buscando sensor pelo ID</span>
+                      </div>
+                      <div class="pm-snippet-container">
+                        <div class="pm-snippet pm-snippet-wrap">
+
+                          <pre class="pm-snippet-body"><code class="hljs curl ruby">curl --request GET \
+  --url <span class="hljs-symbol">http:</span>/<span class="hljs-regexp">/localhost:8060/sensores</span><span class="hljs-regexp">/id/</span><span class="hljs-number">1</span></code></pre>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- react-empty: 5360 -->
+                  </div>
+                </div>
+                <div class="docs-item" id="e8c99ea3-f749-45eb-aac2-55d9aa73d50f">
+                  <div class="docs-desc">
+                    <div>
+                      <h2 class="pm-h2 docs-desc-title docs-desc-title--request">
+                        <span class="pm-method-color-get">
+                          <!-- react-text: 5366 -->GET
+                          <!-- /react-text -->
+                          <!-- react-text: 5367 -->
+                          <!-- /react-text -->
+                        </span>
+                        <!-- react-text: 5368 -->Buscando todos os sensores
+                        <!-- /react-text -->
+                      </h2>
+                      <div class="docs-desc-title__url">http://localhost:8060/sensores/todos</div>
+                    </div>
+                    <div class="docs-desc-body">
+                      <div class="pm-markdown"></div>
+                      <!-- react-empty: 5372 -->
+                      <!-- react-empty: 5373 -->
+                      <!-- react-empty: 5374 -->
+                      <!-- react-empty: 5375 -->
+                    </div>
+                  </div>
+                  <div class="docs-example">
+                    <div class="docs-example__request">
+                      <div class="docs-example__snippet-header">
+                        <span class="docs-example__snippet-type">Example Request</span>
+                        <span class="docs-example__response-title" title="Buscando todos os sensores">Buscando todos os sensores</span>
+                      </div>
+                      <div class="pm-snippet-container">
+                        <div class="pm-snippet pm-snippet-wrap">
+
+                          <pre class="pm-snippet-body"><code class="hljs curl go">curl --request GET \
+  --url http:<span class="hljs-comment">//localhost:8060/sensores/todos</span></code></pre>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- react-empty: 5406 -->
+                  </div>
+                </div>
+                <div class="docs-item" id="b32ffe2c-6721-4e80-91ae-94818b6ec267">
+                  <div class="docs-desc">
+                    <div>
+                      <h2 class="pm-h2 docs-desc-title docs-desc-title--request">
+                        <span class="pm-method-color-post">
+                          <!-- react-text: 5412 -->POST
+                          <!-- /react-text -->
+                          <!-- react-text: 5413 -->
+                          <!-- /react-text -->
+                        </span>
+                        <!-- react-text: 5414 -->Novo sensor
+                        <!-- /react-text -->
+                      </h2>
+                      <div class="docs-desc-title__url">http://localhost:8060/sensores/novo</div>
+                    </div>
+                    <div class="docs-desc-body">
+                      <div class="pm-markdown"></div>
+                      <div class="docs-request-headers">
+                        <h4 class="pm-h4">Headers</h4>
+                        <table class="pm-table docs-request-table">
+                          <tbody>
+                            <tr>
+                              <td class="weight--medium">Content-Type</td>
+                              <td>
+                                <!-- react-text: 5425 -->application/json
+                                <!-- /react-text -->
+                                <!-- react-empty: 5426 -->
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- react-empty: 5427 -->
+                      <!-- react-empty: 5428 -->
+                      <div class="docs-request-body">
+                        <h4 class="pm-h4 docs-request-body__title">Body</h4>
+                        <span class="docs-request-body__mode push-half--left">raw (application/json)</span>
+                        <pre class="docs-request-body__raw"><code>{
+  "codigo": "1002",
+    "temperaturaMin": -5,
+    "decricao": "Geladeira 02",
+    "temperaturaMax": 8,
+    "id": 4
+}</code></pre>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="docs-example">
+                    <div class="docs-example__request">
+                      <div class="docs-example__snippet-header">
+                        <span class="docs-example__snippet-type">Example Request</span>
+                        <span class="docs-example__response-title" title="Novo sensor">Novo sensor</span>
+                      </div>
+                      <div class="pm-snippet-container">
+                        <div class="pm-snippet pm-snippet-wrap">
+
+                          <pre class="pm-snippet-body"><code class="hljs curl ruby">curl --request POST \
+  --url <span class="hljs-symbol">http:</span>/<span class="hljs-regexp">/localhost:8060/sensores</span><span class="hljs-regexp">/novo \
+  --header 'Content-Type: application/json</span><span class="hljs-string">' \
+  --data '</span>{
+  <span class="hljs-string">"codigo"</span>: <span class="hljs-string">"1002"</span>,
+    <span class="hljs-string">"temperaturaMin"</span>: -<span class="hljs-number">5</span>,
+    <span class="hljs-string">"decricao"</span>: <span class="hljs-string">"Geladeira 02"</span>,
+    <span class="hljs-string">"temperaturaMax"</span>: <span class="hljs-number">8</span>,
+    <span class="hljs-string">"id"</span>: <span class="hljs-number">4</span>
+}<span class="hljs-string">'</span></code></pre>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- react-empty: 5464 -->
+                  </div>
+                </div>
+                <div class="docs-item" id="9b376283-edeb-4149-a01f-0d3d8a5ea1d8">
+                  <div class="docs-desc">
+                    <div>
+                      <h2 class="pm-h2 docs-desc-title docs-desc-title--request">
+                        <span class="pm-method-color-post">
+                          <!-- react-text: 5470 -->POST
+                          <!-- /react-text -->
+                          <!-- react-text: 5471 -->
+                          <!-- /react-text -->
+                        </span>
+                        <!-- react-text: 5472 -->Atualizando sensor
+                        <!-- /react-text -->
+                      </h2>
+                      <div class="docs-desc-title__url">http://localhost:8060/sensores/atualizar</div>
+                    </div>
+                    <div class="docs-desc-body">
+                      <div class="pm-markdown"></div>
+                      <div class="docs-request-headers">
+                        <h4 class="pm-h4">Headers</h4>
+                        <table class="pm-table docs-request-table">
+                          <tbody>
+                            <tr>
+                              <td class="weight--medium">Content-Type</td>
+                              <td>
+                                <!-- react-text: 5483 -->application/json
+                                <!-- /react-text -->
+                                <!-- react-empty: 5484 -->
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- react-empty: 5485 -->
+                      <!-- react-empty: 5486 -->
+                      <div class="docs-request-body">
+                        <h4 class="pm-h4 docs-request-body__title">Body</h4>
+                        <span class="docs-request-body__mode push-half--left">raw (application/json)</span>
+                        <pre class="docs-request-body__raw"><code>	{
+	"temperaturaMin": 10,
+	"codigo": "15",
+	"decricao": "super sensor 005",
+    "temperaturaMax": 1,
+    "id": 3
+    }</code></pre>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="docs-example">
+                    <div class="docs-example__request">
+                      <div class="docs-example__snippet-header">
+                        <span class="docs-example__snippet-type">Example Request</span>
+                        <span class="docs-example__response-title" title="Atualizando sensor">Atualizando sensor</span>
+                      </div>
+                      <div class="pm-snippet-container">
+                        <div class="pm-snippet pm-snippet-wrap">
+
+                          <pre class="pm-snippet-body"><code class="hljs curl ruby">curl --request POST \
+  --url <span class="hljs-symbol">http:</span>/<span class="hljs-regexp">/localhost:8060/sensores</span><span class="hljs-regexp">/atualizar \
+  --header 'Content-Type: application/json</span><span class="hljs-string">' \
+  --data '</span>	{
+	<span class="hljs-string">"temperaturaMin"</span>: <span class="hljs-number">10</span>,
+	<span class="hljs-string">"codigo"</span>: <span class="hljs-string">"15"</span>,
+	<span class="hljs-string">"decricao"</span>: <span class="hljs-string">"super sensor 005"</span>,
+    <span class="hljs-string">"temperaturaMax"</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">"id"</span>: <span class="hljs-number">3</span>
+    }<span class="hljs-string">'</span></code></pre>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- react-empty: 5522 -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+        <!-- react-empty: 323 -->
+        <div class="pm-toast-container">
+          <div></div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="ReactModalPortal">
+      </div>
+      
+      </body></html>
