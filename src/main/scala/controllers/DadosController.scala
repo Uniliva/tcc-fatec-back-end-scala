@@ -42,6 +42,25 @@ class DadosController extends ControllerBase {
     }
   }
 
+  get("/sensor/graficos/:sensorId/quantidade/:qtd") {
+    Try {
+      logger.info("Buscando os dados dos graficos do sensor.")
+      val sensor = params("sensorId").toLong
+      val qtd = params("qtd").toInt
+      val sensores = DadosServices.porSensorQuantidade(sensor, qtd)
+      var totalTemEnergia: Int = 0
+      var totalNaoTemEnergia: Int = 0
+     sensores.foreach(dado => {
+       if(!dado.head.temEnergia){
+         totalTemEnergia += 1;
+       }else{
+         totalNaoTemEnergia += 1;
+       }
+     });
+      Ok(Map("temEnergia" -> totalTemEnergia, "falhaEletrica"-> totalNaoTemEnergia))
+    }
+  }
+
 
   get("/id/:id") {
     try {
