@@ -7,13 +7,13 @@ import com.github.aselab.activerecord.dsl._
 import services.SensorService.SensorNovo
 
 object EstabelecimentoService {
-  def novo(estabelecimento: EstabelecimentoNovo): Option[Estabelecimento] = Some(Estabelecimento(estabelecimento.nome, estabelecimento.endereco).create)
+  def novo(estabelecimento: EstabelecimentoNovo): Option[Estabelecimento] = Some(Estabelecimento(estabelecimento.nome, estabelecimento.endereco, estabelecimento.telefone, estabelecimento.email).create)
 
   //def buscaTodos(): Option[List[Estabelecimento]] = Some(Estabelecimento.toList)
  def buscaTodos(): Option[List[EstabelecimentoFull]] ={
 
     var x =Estabelecimento.all.map(
-      (estabelecimento) => EstabelecimentoFull(estabelecimento.id, estabelecimento.nome, estabelecimento.endereco, estabelecimento.sensores.map( x => {
+      (estabelecimento) => EstabelecimentoFull(estabelecimento.id, estabelecimento.nome, estabelecimento.endereco, estabelecimento.telefone, estabelecimento.email, estabelecimento.sensores.map( x => {
         SensorNovo(x.codigo, x.decricao: String, x.temperaturaMin, x.temperaturaMax,  x.id)
       }).toList)
     ).toList
@@ -21,9 +21,11 @@ object EstabelecimentoService {
 
   }
 
+  def buscaEstabelecimentosSensorPorId(id: Long): Option[Estabelecimento] = Estabelecimento.find(id)
+
   def buscaEstabelecimentosPorId(id: Long): Option[EstabelecimentoFull] ={
     var x =Estabelecimento.find(id).map(
-      (estabelecimento) => EstabelecimentoFull(estabelecimento.id, estabelecimento.nome, estabelecimento.endereco, estabelecimento.sensores.map( x => {
+      (estabelecimento) => EstabelecimentoFull(estabelecimento.id, estabelecimento.nome, estabelecimento.endereco,estabelecimento.telefone, estabelecimento.email, estabelecimento.sensores.map( x => {
         SensorNovo(x.codigo, x.decricao: String, x.temperaturaMin, x.temperaturaMax,  x.id)
       }).toList)
     ).head
@@ -55,7 +57,7 @@ object EstabelecimentoService {
     Option(estabelecimento.sensores.remove(sensor).head)
   }
 
-  case class EstabelecimentoNovo(nome: String, endereco: String, id: Long = 0)
-  case class EstabelecimentoFull(idEstabelecimento: Long, nome: String, endereco: String, sensores: List[SensorNovo])
+  case class EstabelecimentoNovo(nome: String, endereco: String, telefone: String, email: String, id: Long = 0)
+  case class EstabelecimentoFull(idEstabelecimento: Long, nome: String, endereco: String, telefone: String, email: String , sensores: List[SensorNovo])
 
 }

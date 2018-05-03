@@ -5,7 +5,7 @@ import org.joda.time.DateTime
 import com.github.aselab.activerecord.dsl._
 
 object DadosServices {
-  def porSensorQuantidade(sensor: Long, qtd: Int): Option[List[Dados]] = Some(Dados.where(_.sensorID === sensor).orderBy(_.dataAtual desc).limit(qtd).toList)
+  def porSensorQuantidade(sensor: Long, qtd: Int): List[Dados] = Dados.where(_.sensorID === sensor).orderBy(_.dataAtual desc).limit(qtd).toList
 
   def novo(dado: DadoNovo): Option[Dados] = {
     val novo = Dados(dado.temperaturaAtual, dado.dataAtual, dado.temEnergia)

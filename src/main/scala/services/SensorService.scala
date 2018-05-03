@@ -21,7 +21,7 @@ object SensorService {
       // join on
       (sensor, estabelecimento) => sensor.estabelecimentoID === estabelecimento.id
     ).select(
-      (sensor, estabelecimento) => SensorLoja(sensor.codigo,  sensor.id,sensor.decricao, sensor.temperaturaMin, sensor.temperaturaMax, estabelecimento.nome, estabelecimento.endereco, estabelecimento.id)
+      (sensor, estabelecimento) => SensorLoja(sensor.codigo,  sensor.id,sensor.decricao, sensor.temperaturaMin, sensor.temperaturaMax, estabelecimento.id)
     ).toList
     Some(x)
   }
@@ -34,14 +34,15 @@ object SensorService {
     sensorSalvo.codigo = sensor.codigo
     sensorSalvo.temperaturaMax = sensor.temperaturaMax
     sensorSalvo.temperaturaMin = sensor.temperaturaMin
+    sensorSalvo.estabelecimentoID = sensor.idEstabelecimento
     Some(sensorSalvo.update)
   }
 
   def delete(id: Long): Boolean = Sensor.find(id).head.delete
 
 
-  case class SensorNovo(codigo: String, decricao: String, temperaturaMin: Double, temperaturaMax: Double, id: Long = 0)
+  case class SensorNovo(codigo: String, decricao: String, temperaturaMin: Double, temperaturaMax: Double, idEstabelecimento: Long, id: Long = 0)
 
-  case class SensorLoja(codigo: String, id: Long, decricao: String, temperaturaMin: Double, temperaturaMax: Double, nomeEstabelemento: String, enderecoEstabelemento: String, idEstabelecimento: Long)
+  case class SensorLoja(codigo: String, id: Long, decricao: String, temperaturaMin: Double, temperaturaMax: Double,  idEstabelecimento: Long)
 
 }

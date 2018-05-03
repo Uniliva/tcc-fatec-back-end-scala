@@ -1,5 +1,6 @@
 package controllers
 
+import base.Support.ControllerBase
 import com.github.aselab.activerecord.dsl._
 import org.json4s._
 import org.scalatra._
@@ -13,7 +14,7 @@ class SensorController extends ControllerBase {
     Try {
       logger.info("Adicionando novo Sensor.")
       val sensor = parsedBody.extract[SensorNovo]
-      SensorService.novo(sensor).map(sensor => Ok("novo-estabelecimento" -> sensor.asJson)).orNull
+      SensorService.novo(sensor).map(sensor => Ok("novo-sensor" -> sensor.asJson)).orNull
     }
   }
 

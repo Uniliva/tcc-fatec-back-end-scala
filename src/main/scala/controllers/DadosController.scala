@@ -1,10 +1,12 @@
 package controllers
 
+import base.Support.ControllerBase
 import com.fasterxml.jackson.databind.JsonMappingException
 import com.github.aselab.activerecord.dsl._
+import models.Dados
 import org.json4s._
 import org.scalatra._
-import services.DadosServices
+import services.{DadosServices, EstabelecimentoService, SensorService}
 import services.DadosServices.DadoNovo
 
 import scala.util.Try
@@ -38,32 +40,42 @@ class DadosController extends ControllerBase {
       logger.info("Buscando os dados de um sensor.")
       val sensor = params("sensorId").toLong
       val qtd = params("qtd").toInt
-      DadosServices.porSensorQuantidade(sensor, qtd).map(dados => Ok("dados" -> dados.asJson)).orNull
+      val dados = DadosServices.porSensorQuantidade(sensor, qtd)
+      Ok("dados" -> dados.map(dados => dados.asJson) )
     }
   }
 
   get("/sensor/graficos/:sensorId/quantidade/:qtd") {
     Try {
       logger.info("Buscando os dados dos graficos do sensor.")
-      val sensor = params("sensorId").toLong
+      val id = params("sensorId").toLong
       val qtd = params("qtd").toInt
-      val sensores = DadosServices.porSensorQuantidade(sensor, qtd)
+      val sensor = SensorService.buscaPorId(id)
+      val estabelecimentoID = sensor.map(s => s.estabelecimentoID).head
+      val estabelecimento = EstabelecimentoService.buscaEstabelecimentosSensorPorId(estabelecimentoID).map(e => Map("nome" -> e.nome, "endereco" -> e.endereco, "telefone" -> e.telefone, "email" -> e.email,"sensor" -> sensor.map(s => s.asJson) ))
+      val sensores = DadosServices.porSensorQuantidade(id, qtd)
       var totalTemEnergia: Int = 0
       var totalNaoTemEnergia: Int = 0
-     sensores.foreach(dado => {
-       if(!dado.head.temEnergia){
-         totalTemEnergia += 1;
-       }else{
-         totalNaoTemEnergia += 1;
-       }
-     });
-      Ok(Map("temEnergia" -> totalTemEnergia, "falhaEletrica"-> totalNaoTemEnergia))
+      sensores.map( dado => {
+            if (dado.temEnergia) {
+              totalTemEnergia += 1;
+            } else {
+              totalNaoTemEnergia += 1;
+            }
+          })
+
+      var retorno = Map(
+        "estabelecimento" -> estabelecimento,
+        "energia"-> Map("tem-energia" -> totalTemEnergia, "falha-eletrica"-> totalNaoTemEnergia),
+        "dados"-> sensores.map(dados => dados.asJson)
+      )
+      Ok(retorno)
     }
   }
 
 
   get("/id/:id") {
-    try {
+    Try {
       logger.info("Buscando dados pelo Id.")
       val id = params("id").toLong
       DadosServices.buscaPorId(id).map(dado => Ok("dado" -> dado.asJson))

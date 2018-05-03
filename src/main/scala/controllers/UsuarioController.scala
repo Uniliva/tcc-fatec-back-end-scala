@@ -1,5 +1,6 @@
 package controllers
 
+import base.Support.ControllerBase
 import com.github.aselab.activerecord.dsl._
 import comum.{EmailUtil, Util}
 import org.json4s._
