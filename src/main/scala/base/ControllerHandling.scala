@@ -1,4 +1,4 @@
-package base.Support
+package base
 
 import org.json4s.ext.JodaTimeSerializers
 import org.json4s.{DefaultFormats, Formats}

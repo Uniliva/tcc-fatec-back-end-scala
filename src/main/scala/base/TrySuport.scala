@@ -1,4 +1,4 @@
-package base.Support
+package base
 
 import com.fasterxml.jackson.core.JsonParseException
 import com.fasterxml.jackson.databind.JsonMappingException
@@ -12,11 +12,10 @@ import scala.util.Try
 import scala.util.Success
 import scala.util.Failure
 
-trait TrySupport extends ServletBase {
+trait TrySupport extends ServletBase with LazyLogging {
 
 
   override protected def renderResponse(actionResult: Any) = {
-
     actionResult match {
       case t: Try[_] => handleTry(t)
       case a => super.renderResponse(a)
@@ -24,7 +23,6 @@ trait TrySupport extends ServletBase {
   }
 
   private[this] def handleTry(result: Try[_]) = {
-
     result match {
       case Success(response) => renderResponse(response)
       case Failure(error) => renderResponse(errorHandler(error))
@@ -32,6 +30,7 @@ trait TrySupport extends ServletBase {
   }
 
   private def errorHandler(error: Throwable) = {
+    logger.error("Erro na aplicacao:"+ error.getMessage)
     error match {
       case e: NumberFormatException => BadRequest(MsgError("Numero informado é inválidos", e.getMessage))
       case e: NoSuchElementException => BadRequest(MsgError( "Erro nenhum elemento encontrado",e.getMessage))

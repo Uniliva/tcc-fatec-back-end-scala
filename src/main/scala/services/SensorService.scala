@@ -28,6 +28,8 @@ object SensorService {
 
   def buscaPorId(id: Long): Option[Sensor] = Sensor.find(id)
 
+  def buscaPorCodigo(codigo: String): Sensor = Sensor.findBy("codigo",codigo).head
+
   def atualizar(sensor: SensorNovo): Option[Sensor] = {
     var sensorSalvo = Sensor.find(sensor.id).head
     sensorSalvo.decricao = sensor.decricao

@@ -1,6 +1,6 @@
 package controllers
 
-import base.Support.ControllerBase
+import base.ControllerBase
 import com.github.aselab.activerecord.dsl._
 import org.json4s._
 import org.scalatra._

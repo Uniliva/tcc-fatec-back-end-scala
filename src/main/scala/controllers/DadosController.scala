@@ -1,9 +1,6 @@
 package controllers
 
-import java.util.Calendar
-import java.util.Formatter.DateTime
-
-import base.Support.ControllerBase
+import base.ControllerBase
 import com.fasterxml.jackson.databind.JsonMappingException
 import com.github.aselab.activerecord.dsl._
 import models.Dados
@@ -11,6 +8,7 @@ import org.json4s._
 import org.scalatra._
 import services.{DadosServices, EstabelecimentoService, SensorService}
 import services.DadosServices.{DadoNovo, DadoSensor}
+import org.joda.time.DateTime
 
 import scala.util.Try
 
@@ -22,27 +20,21 @@ class DadosController extends ControllerBase {
     "sensorID": 1
 }
   */
-  post("/novo") {
+  post("/sensor/:codigo") {
     Try {
-      logger.info("Adicionando novo dado do sensor.")
-      val dado = parsedBody.extract[DadoNovo]
-      DadosServices.novo(dado)
+      val codigo = params("codigo")
+      logger.info("Adicionando novo dado do sensor: "+ codigo)
+      val sensor = SensorService.buscaPorCodigo(codigo)
+      val dadoEquip = parsedBody.extract[DadoSensor]
+      val dadosSesnsor = new DadoNovo(dadoEquip.temperaturaAtual,new DateTime(), sensor.id, dadoEquip.temEnergia)
+      DadosServices.novo(dadosSesnsor)
         .map(dados => Ok("dado" -> dados.asJson)).orNull
     }
   }
-/*
-  post("/sensor") {
-    Try {
-      logger.info("Adicionando novo dado do sensor.")
-      val dado = parsedBody.extract[DadoSensor]
-      val dados = new DadoNovo(dado.temperaturaAtual,new DateTime("2018-04-24T09:04:22Z"), 1, dado.temEnergia )
-      DadosServices.novo(dado)
-        .map(dados => Ok("dado" -> dados.asJson)).orNull
-    }
-  }*/
 
   get("/todos") {
     Try {
+      logger.info("Buscando todos os dados: ")
       DadosServices.buscaTodos()
         .map(dados => Ok("dados" -> dados.asJson)).orNull
     }

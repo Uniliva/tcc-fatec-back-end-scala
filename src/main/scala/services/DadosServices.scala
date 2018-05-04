@@ -18,6 +18,6 @@ object DadosServices {
   def buscaPorId(id: Long): Option[Dados] = Dados.find(id)
 
   class DadoNovo(var temperaturaAtual: Double, var dataAtual: DateTime,var sensorId: Long = 0, var temEnergia:Boolean = false)
-  class DadoSensor(var temperaturaAtual: Double,var sensorId: String , var temEnergia:Boolean = false)
+  class DadoSensor(var temperaturaAtual: Double, var temEnergia:Boolean = false)
 
 }
