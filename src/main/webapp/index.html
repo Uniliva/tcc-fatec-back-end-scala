@@ -124,7 +124,7 @@
                         <!-- react-text: 4486 -->Criar dados de sensor
                         <!-- /react-text -->
                       </h2>
-                      <div class="docs-desc-title__url">http://umonitor-api.herokuapp.com/dados/novo</div>
+                      <div class="docs-desc-title__url">http://umonitor-api.herokuapp.com/dados/sensor/:idSensor</div>
                     </div>
                     <div class="docs-desc-body">
                       <div class="pm-markdown"></div>
@@ -135,9 +135,7 @@
                             <tr>
                               <td class="weight--medium">Content-Type</td>
                               <td>
-                                <!-- react-text: 4497 -->application/json
-                                <!-- /react-text -->
-                                <!-- react-empty: 4498 -->
+                               application/json
                               </td>
                             </tr>
                           </tbody>
@@ -150,9 +148,7 @@
                         <span class="docs-request-body__mode push-half--left">raw (application/json)</span>
                         <pre class="docs-request-body__raw"><code> {
     "temperaturaAtual":2,
-    "dataAtual": "2018-04-24T18:04:22Z",
-    "temEnergia": true,
-    "sensorId": 2
+    "temEnergia": true
 }</code></pre>
                       </div>
                     </div>
