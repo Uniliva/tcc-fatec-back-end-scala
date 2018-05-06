@@ -17,14 +17,16 @@ class DadosController extends ControllerBase {
 
   post("/sensor/:codigo") {
     Try {
-      EmailUtil.enviar("uniliva@hotmail.com","Teste","Isso é um teste")
       val codigo = params("codigo")
       logger.info("Adicionando novo dado do sensor: "+ codigo)
       val sensor = SensorService.buscaPorCodigo(codigo)
       val dadoEquip = parsedBody.extract[DadoSensor]
-      val dadosSesnsor = new DadoNovo(dadoEquip.temperaturaAtual,new DateTime(), sensor.id, dadoEquip.temEnergia)
-      DadosServices.novo(dadosSesnsor)
-        .map(dados => Ok("dado" -> dados.asJson)).orNull
+      val dadosSensor = new DadoNovo(dadoEquip.temperaturaAtual,new DateTime(), sensor.id, dadoEquip.temEnergia)
+      if(!dadoEquip.temEnergia){
+        val estabelecimento = EstabelecimentoService.buscaEstabelecimentosPorId(sensor.estabelecimentoID).head
+        EmailUtil.enviar(estabelecimento.email,"Falha eletrica",estabelecimento,sensor,dadosSensor)
+      }
+      DadosServices.novo(dadosSensor).map(dados => Ok("dado" -> dados.asJson)).orNull
     }
   }
 
