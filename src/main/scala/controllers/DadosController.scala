@@ -3,6 +3,7 @@ package controllers
 import base.ControllerBase
 import com.fasterxml.jackson.databind.JsonMappingException
 import com.github.aselab.activerecord.dsl._
+import comum._
 import models.Dados
 import org.json4s._
 import org.scalatra._
@@ -13,15 +14,10 @@ import org.joda.time.DateTime
 import scala.util.Try
 
 class DadosController extends ControllerBase {
-  /*
-   {
-    "temperaturaAtual": 20,
-    "dataAtual": "2004-09-04T18:06:22Z",
-    "sensorID": 1
-}
-  */
+
   post("/sensor/:codigo") {
     Try {
+      EmailUtil.enviar("uniliva@hotmail.com","Teste","Isso é um teste")
       val codigo = params("codigo")
       logger.info("Adicionando novo dado do sensor: "+ codigo)
       val sensor = SensorService.buscaPorCodigo(codigo)
