@@ -37,9 +37,12 @@ object EstabelecimentoService {
 
   //ajustar depois
   def atualizar(estabelecimento: EstabelecimentoNovo):Option[ Estabelecimento] = {
+    println(estabelecimento.id)
     var estabelecimentoSalvo = Estabelecimento.find(estabelecimento.id).head
     estabelecimentoSalvo.nome = estabelecimento.nome
     estabelecimentoSalvo.endereco = estabelecimento.endereco
+    estabelecimentoSalvo.email = estabelecimento.email
+    estabelecimentoSalvo.telefone = estabelecimento.telefone
     Some(estabelecimentoSalvo.update)
   }
 
