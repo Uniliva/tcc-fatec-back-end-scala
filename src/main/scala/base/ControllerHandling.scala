@@ -7,7 +7,7 @@ import org.scalatra.{CorsSupport, ScalatraBase}
 
 trait ControllerHandling  extends ScalatraBase with CorsSupport  with JacksonJsonSupport {
   override protected implicit def jsonFormats: Formats = DefaultFormats  ++ JodaTimeSerializers.all
-  options("/*"){
+  options("/*") {
     response.setHeader("Access-Control-Allow-Origin", "*")
   }
   before() {

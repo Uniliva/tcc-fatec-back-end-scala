@@ -26,7 +26,7 @@ object EstabelecimentoService {
   def buscaEstabelecimentosPorId(id: Long): Option[EstabelecimentoFull] ={
     var x =Estabelecimento.find(id).map(
       (estabelecimento) => EstabelecimentoFull(estabelecimento.id, estabelecimento.nome, estabelecimento.endereco,estabelecimento.telefone, estabelecimento.email, estabelecimento.sensores.map( x => {
-        SensorNovo(x.codigo, x.decricao: String, x.temperaturaMin, x.temperaturaMax,  x.id)
+      SensorNovo(x.codigo, x.decricao: String, x.temperaturaMin, x.temperaturaMax, x.estabelecimentoID,  x.id)
       }).toList)
     ).head
     Some(x)
@@ -58,6 +58,6 @@ object EstabelecimentoService {
   }
 
   case class EstabelecimentoNovo(nome: String, endereco: String, telefone: String, email: String, id: Long = 0)
-  case class EstabelecimentoFull(idEstabelecimento: Long, nome: String, endereco: String, telefone: String, email: String , sensores: List[SensorNovo])
+  case class EstabelecimentoFull(id: Long, nome: String, endereco: String, telefone: String, email: String , sensores: List[SensorNovo])
 
 }
