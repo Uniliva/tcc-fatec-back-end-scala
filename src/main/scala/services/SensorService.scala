@@ -11,7 +11,11 @@ object SensorService {
  INNER JOIN TABELA_B B ON B.CODIGO = A.CODIGO
 
  */
-  def novo(sensor: SensorNovo): Option[Sensor] = Some(Sensor(sensor.codigo, sensor.decricao, sensor.temperaturaMin, sensor.temperaturaMax).create)
+  def novo(sensor: SensorNovo): Option[Sensor] = {
+   val s = Sensor(sensor.codigo, sensor.decricao, sensor.temperaturaMin, sensor.temperaturaMax).create
+    EstabelecimentoService.adicionarSensor(sensor.idEstabelecimento.toLong, s.id)
+    Some(s)
+  }
 
   //def buscaTodos(): Option[List[Sensor]] = Some(Sensor.toList)
 
