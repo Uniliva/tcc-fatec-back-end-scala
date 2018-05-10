@@ -8,8 +8,8 @@ import models.{Tabelas, Usuario}
 
 class ScalatraBootstrap extends LifeCycle {
   //definindo qual o bando de dados
-  //System.setProperty("run.mode", "prod")
-  System.setProperty("run.mode", "local")
+  System.setProperty("run.mode", "prod")
+  //System.setProperty("run.mode", "local")
   override def init(context: ServletContext) {
     //inicializando as tabelas do banco de dados
     Tabelas.initialize
