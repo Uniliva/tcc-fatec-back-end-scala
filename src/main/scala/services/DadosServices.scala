@@ -19,5 +19,6 @@ object DadosServices {
 
   class DadoNovo(var temperaturaAtual: Double, var dataAtual: DateTime,var sensorId: Long = 0, var temEnergia:Boolean = false)
   class DadoSensor(var temperaturaAtual: Double, var temEnergia:Boolean = false)
+  class DadoSensor2(var T: Double, var E:Boolean = false)
 
 }

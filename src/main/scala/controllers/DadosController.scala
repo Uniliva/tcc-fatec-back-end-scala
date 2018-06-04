@@ -8,7 +8,7 @@ import models.Dados
 import org.json4s._
 import org.scalatra._
 import services.{DadosServices, EstabelecimentoService, SensorService}
-import services.DadosServices.{DadoNovo, DadoSensor}
+import services.DadosServices.{DadoNovo, DadoSensor, DadoSensor2}
 import org.joda.time.DateTime
 
 import scala.util.Try
@@ -20,9 +20,9 @@ class DadosController extends ControllerBase {
       val codigo = params("codigo")
       logger.info("Adicionando novo dado do sensor: "+ codigo)
       val sensor = SensorService.buscaPorCodigo(codigo)
-      val dadoEquip = parsedBody.extract[DadoSensor]
-      val dadosSensor = new DadoNovo(dadoEquip.temperaturaAtual,new DateTime(), sensor.id, dadoEquip.temEnergia)
-      if(!dadoEquip.temEnergia){
+      val dadoEquip = parsedBody.extract[DadoSensor2]
+      val dadosSensor = new DadoNovo(dadoEquip.T,new DateTime(), sensor.id, dadoEquip.E)
+      if(!dadoEquip.E){
         val estabelecimento = EstabelecimentoService.buscaEstabelecimentosPorId(sensor.estabelecimentoID).head
         EmailUtil.enviar(estabelecimento.email,"Falha eletrica",estabelecimento,sensor,dadosSensor)
       }
