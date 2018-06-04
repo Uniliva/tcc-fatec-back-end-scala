@@ -1,19 +1,19 @@
 # tcc-fatec-back-end-scala
 
 
-##Descrição
+##Descrição##
 
-Este é  repositório da API do Projeto de TCC do curso de Redes da Fatec Osasco.
-Esta e a versão 2.x  foi desenvolvido utilizando Scala. Por ser uma linguagem multiparadigma, funcional e orientada a objetos, de alto rendimento.
+Este é o repositório da API do Projeto de TCC do curso de Redes da Fatec Osasco.
+Esta é a versão 2.x foi desenvolvido em Scala (a versão 1.x foi desenvolvida com [spring boot](https://github.com/Uniliva/tcc-fatec-back-end "spring boot")), por ser uma linguagem multiparadigma, funcional e orientada a objetos, de alto rendimento.
 
 ### Tecnologias utilizadas:
-**[scalatra](http://scalatra.org/ "scalatra")** - micro-framework para desenvolviemnto de APIs web simples em Scala.
+**[scalatra](http://scalatra.org/ "scalatra")** - micro-framework para desenvolvimento web simples em Scala.
 
 
 **[scala-activerecord](https://github.com/aselab/scala-activerecord "scala-activerecord")** -  é uma biblioteca ORM para o Scala.
 
 
-**[Mysql](https://aws.amazon.com/pt/rds/ "Mysql") **– Foi criado um Amazon Relational Database Service (RDS) com o mysql pra o projeto.
+**[Mysql](https://aws.amazon.com/pt/rds/ "Mysql")**– Foi criado um Relational Database Service (RDS) na Amazon AWS, com o mysql para o projeto, as tabelas são geradas automaticamente pela API, na primeira execução.
 
 
 ## Funcionamento
