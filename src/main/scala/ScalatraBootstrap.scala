@@ -14,7 +14,7 @@ class ScalatraBootstrap extends LifeCycle {
     //inicializando as tabelas do banco de dados
     Tabelas.initialize
     context.mount(new UsuarioController,  "/usuarios/*")
-    context.mount(new DadosController,  "/dados/*")
+    context.mount(new DadosController,  "/dado/*")
     context.mount(new EstabelecimentoController,  "/estabelecimentos/*")
     context.mount(new SensorController,  "/sensores/*")
 

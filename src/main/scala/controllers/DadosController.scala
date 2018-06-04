@@ -15,7 +15,7 @@ import scala.util.Try
 
 class DadosController extends ControllerBase {
 
-  post("/sensor/:codigo") {
+  post("/:codigo") {
     Try {
       val codigo = params("codigo")
       logger.info("Adicionando novo dado do sensor: "+ codigo)
