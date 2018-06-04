@@ -1,7 +1,7 @@
 # tcc-fatec-back-end-scala
 
 
-##Descrição##
+## Descrição
 
 Este é o repositório da API do Projeto de TCC do curso de Redes da Fatec Osasco.
 Esta é a versão 2.x foi desenvolvido em Scala (a versão 1.x foi desenvolvida com [spring boot](https://github.com/Uniliva/tcc-fatec-back-end "spring boot")), por ser uma linguagem multiparadigma, funcional e orientada a objetos, de alto rendimento.
