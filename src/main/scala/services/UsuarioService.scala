@@ -1,16 +1,16 @@
 package services
 
-import com.github.aselab.activerecord.dsl._
-import models.{ Usuario}
+import models.Usuario
 
 
 object UsuarioService {
 
-  def logar(usuario: UsuarioLogin): Option[Usuario] = {
-    Usuario.findBy("email" -> usuario.email, "senha" -> usuario.senha)
+  def logar(usuarioJson: String): Option[Usuario] = {
+    val usuarioLogin = Usuario.fromJson(usuarioJson)
+    Usuario.findBy("email" -> usuarioLogin.email, "senha" -> usuarioLogin.senha)
   }
 
-  def novo(usuarioNovo: UsuarioNovo): Option[Usuario] = Some(Usuario(usuarioNovo.nome, usuarioNovo.email, usuarioNovo.senha).create)
+  def novo(usuarioJson: String): Option[Usuario] = Some(Usuario.fromJson(usuarioJson).create)
 
   def buscaTodos(): Option[List[Usuario]] = Some(Usuario.toList)
 
@@ -18,23 +18,13 @@ object UsuarioService {
 
   def buscaPorEmail(email: String): Option[Usuario] = Usuario.findBy("email" -> email)
 
-  //ajustar depois
-  def atualizar(usuario: UsuarioNovo): Option[Usuario] = {
-    var usuarioSalvo = Usuario.find(usuario.id).head
+  def buscaPorCpf(cpf: String): Option[Usuario] = Usuario.findBy("cpf" -> cpf)
 
-    usuarioSalvo.nome = usuario.nome
-    usuarioSalvo.email = usuario.email
-    usuarioSalvo.isAdmin = usuario.isAdmin
-    usuarioSalvo.senha = usuario.senha
-    usuarioSalvo.save
-    Some(usuarioSalvo)
+  def atualizar(usuarioJson: String): Option[Usuario] = {
+    val usuarioSalvo = Usuario.fromJson(usuarioJson)
+    Some(usuarioSalvo.update)
   }
 
-  def remove(id:Long):Boolean =  Usuario.find(id).head.delete
-
-
-case class UsuarioLogin(email: String, senha: String)
-
-case class UsuarioNovo(nome: String, email: String, isAdmin: Boolean, senha: String,  id: Long = 0)
+  def remove(id: Long): Boolean = Usuario.find(id).head.delete
 
 }

@@ -43,7 +43,7 @@ class DadosController extends ControllerBase {
       logger.info("Buscando os dados de um sensor.")
       val sensor = params("sensorId").toLong
       val qtd = params("qtd").toInt
-      val dados = DadosServices.porSensorQuantidade(sensor, qtd)
+      val dados = DadosServices.porSensorEQuantidade(sensor, qtd)
       Ok("dados" -> dados.map(dados => dados.asJson) )
     }
   }
@@ -56,7 +56,7 @@ class DadosController extends ControllerBase {
       val sensor = SensorService.buscaPorId(id)
       val estabelecimentoID = sensor.map(s => s.estabelecimentoID).head
       val estabelecimento = EstabelecimentoService.buscaEstabelecimentosSensorPorId(estabelecimentoID).map(e => Map("nome" -> e.nome, "endereco" -> e.endereco, "telefone" -> e.telefone, "email" -> e.email,"sensor" -> sensor.map(s => s.asJson) ))
-      val sensores = DadosServices.porSensorQuantidade(id, qtd)
+      val sensores = DadosServices.porSensorEQuantidade(id, qtd)
       var totalTemEnergia: Int = 0
       var totalNaoTemEnergia: Int = 0
       sensores.map( dado => {

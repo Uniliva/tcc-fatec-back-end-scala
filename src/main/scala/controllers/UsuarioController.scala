@@ -2,43 +2,26 @@ package controllers
 
 import base.ControllerBase
 import com.github.aselab.activerecord.dsl._
-import comum.{EmailUtil, Util}
 import org.json4s._
 import org.scalatra._
 import services.UsuarioService
-import services.UsuarioService.{UsuarioLogin, UsuarioNovo}
 
 import scala.util.Try
 
 class UsuarioController extends ControllerBase {
   post("/login") {
-    try {
+    Try {
       logger.info("Login iniciado.")
-      val usuarioLogin = parsedBody.extract[UsuarioLogin]
-      UsuarioService.logar(usuarioLogin).
+      UsuarioService.logar(request.body).
         map(usuario => Ok("usuario-logado" -> usuario.asJson)).
         getOrElse(Unauthorized("msg" -> "usuario ou senha invalidos"))
-    } catch {
-      case e: Exception => {
-        logger.warn("Erro no login.")
-        BadRequest("msg" -> "Requisição inválida")
-      }
     }
   }
 
-  /*--------------------------------------------------------------------------
-   {
-    "nome": "Teste",
-    "isAdmin": true,
-    "email": "como@umoniotr.com.br",
-    "senha": "1234"
-}
-   */
   post("/novo") {
     Try {
       logger.info("Adicionando Usuario.")
-      val usuario = parsedBody.extract[UsuarioNovo]
-      UsuarioService.novo(usuario).map(usuario => Ok("novo-usuario" -> usuario.asJson)).orNull
+      UsuarioService.novo(request.body).map(usuario => Ok("novo-usuario" -> usuario.asJson)).orNull
     }
   }
 
@@ -68,8 +51,7 @@ class UsuarioController extends ControllerBase {
   post("/atualizar") {
     Try {
       logger.info("Atualizando usuario.")
-      val usuario = parsedBody.extract[UsuarioNovo]
-      UsuarioService.atualizar(usuario).map(usuario => Ok("usuario-atualizado" -> usuario.asJson)).orNull
+      UsuarioService.atualizar(request.body).map(usuario => Ok("usuario-atualizado" -> usuario.asJson)).orNull
     }
   }
 

@@ -7,6 +7,7 @@ import com.typesafe.scalalogging.LazyLogging
 import org.json4s.MappingException
 import org.scalatra.{BadRequest, InternalServerError}
 import org.scalatra.servlet.ServletBase
+import org.squeryl.SquerylSQLException
 
 import scala.util.Try
 import scala.util.Success
@@ -30,18 +31,24 @@ trait TrySupport extends ServletBase with LazyLogging {
   }
 
   private def errorHandler(error: Throwable) = {
-    logger.error("Erro na aplicacao:"+ error.getMessage)
     error match {
-      case e: NumberFormatException => BadRequest(MsgError("Numero informado é inválidos", e.getMessage))
-      case e: NoSuchElementException => BadRequest(MsgError( "Erro nenhum elemento encontrado",e.getMessage))
-      case e: RecordInvalidException => BadRequest(MsgError("Item já cadastrado", e.getMessage))
-      case e: MappingException => BadRequest(MsgError("Valores Informados invalidos", e.getMessage))
-      case e: JsonParseException => InternalServerError(MsgError("Não foi possivel parsear, verifique se esta passado os dados corretamente!", e.getMessage))
-      case e: Exception => InternalServerError(MsgError("Erro interno !", e.getMessage))
+      case e: NumberFormatException => BadRequest(MsgError("Numero informado é inválidos", e))
+      case e: NoSuchElementException => BadRequest(MsgError( "Erro nenhum elemento encontrado",e))
+      case e: RecordInvalidException => BadRequest(MsgError("Item já cadastrado", e))
+      case e: MappingException => BadRequest(MsgError("Valores Informados invalidos", e))
+      case e: JsonParseException => InternalServerError(MsgError("Não foi possivel parsear, verifique se esta passado os dados corretamente!", e))
+      case e: SquerylSQLException =>  BadRequest(MsgError("Item não cadastrado", e))
+      case e: Exception => InternalServerError(MsgError("Erro interno !", e))
     }
 
   }
 
-  case class MsgError(var msg: String, var error: String)
+  case class Error(var msg: String, var error: String)
+
+  def MsgError( msg: String, error: Exception): Error = {
+    logger.error("Erro na aplicacao: "+ msg)
+    logger.error("Erro na aplicacao: msg :"+ error.getMessage)
+    Error(msg,error.getMessage)
+  }
 }
 
