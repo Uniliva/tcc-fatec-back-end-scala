@@ -17,9 +17,6 @@ object SensorService {
     Some(s)
   }
 
-  //def buscaTodos(): Option[List[Sensor]] = Some(Sensor.toList)
-
-
   def buscaTodos(): Option[List[SensorLoja]] = {
     val x = Sensor.joins[Estabelecimento](
       // join on
@@ -30,7 +27,7 @@ object SensorService {
     Some(x)
   }
 
-  def buscaPorId(id: Long): Option[Sensor] = Sensor.find(id)
+  def buscaPorId(id: Long): Sensor = Sensor.find(id).head
 
   def buscaPorCodigo(codigo: String): Sensor = Sensor.findBy("codigo",codigo).head
 

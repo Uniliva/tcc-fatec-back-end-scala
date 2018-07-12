@@ -1,15 +1,11 @@
 package controllers
 
 import base.ControllerBase
-import com.fasterxml.jackson.databind.JsonMappingException
 import com.github.aselab.activerecord.dsl._
-import comum._
-import models.Dados
 import org.json4s._
 import org.scalatra._
-import services.{DadosServices, EstabelecimentoService, SensorService}
-import services.DadosServices.{DadoNovo, DadoSensor, DadoSensor2}
-import org.joda.time.DateTime
+import services.DadosServices.DadosHelper
+import services.{DadosServices, SensorService}
 
 import scala.util.Try
 
@@ -18,15 +14,11 @@ class DadosController extends ControllerBase {
   post("/sensor/:codigo") {
     Try {
       val codigo = params("codigo")
-      logger.info("Adicionando novo dado do sensor: "+ codigo)
+      logger.info("Adicionando novo dado do sensor: " + codigo)
+      val dados = parsedBody.extract[DadosHelper]
       val sensor = SensorService.buscaPorCodigo(codigo)
-      val dadoEquip = parsedBody.extract[DadoSensor2]
-      val dadosSensor = new DadoNovo(dadoEquip.T,new DateTime(), sensor.id, dadoEquip.E)
-      if(!dadoEquip.E){
-        val estabelecimento = EstabelecimentoService.buscaEstabelecimentosPorId(sensor.estabelecimentoID).head
-        EmailUtil.enviar(estabelecimento.email,"Falha eletrica",estabelecimento,sensor,dadosSensor)
-      }
-      DadosServices.novo(dadosSensor).map(dados => Ok("dado" -> dados.asJson)).orNull
+      dados.idSensor = sensor.id
+      DadosServices.novo(dados).map(dados => Ok("dado" -> dados.asJson)).orNull
     }
   }
 
@@ -44,7 +36,7 @@ class DadosController extends ControllerBase {
       val sensor = params("sensorId").toLong
       val qtd = params("qtd").toInt
       val dados = DadosServices.porSensorEQuantidade(sensor, qtd)
-      Ok("dados" -> dados.map(dados => dados.asJson) )
+      Ok("dados" -> dados.map(dados => dados.asJson))
     }
   }
 
@@ -53,29 +45,10 @@ class DadosController extends ControllerBase {
       logger.info("Buscando os dados dos graficos do sensor.")
       val id = params("sensorId").toLong
       val qtd = params("qtd").toInt
-      val sensor = SensorService.buscaPorId(id)
-      val estabelecimentoID = sensor.map(s => s.estabelecimentoID).head
-      val estabelecimento = EstabelecimentoService.buscaEstabelecimentosSensorPorId(estabelecimentoID).map(e => Map("nome" -> e.nome, "endereco" -> e.endereco, "telefone" -> e.telefone, "email" -> e.email,"sensor" -> sensor.map(s => s.asJson) ))
-      val sensores = DadosServices.porSensorEQuantidade(id, qtd)
-      var totalTemEnergia: Int = 0
-      var totalNaoTemEnergia: Int = 0
-      sensores.map( dado => {
-            if (dado.temEnergia) {
-              totalTemEnergia += 1;
-            } else {
-              totalNaoTemEnergia += 1;
-            }
-          })
 
-      var retorno = Map(
-        "estabelecimento" -> estabelecimento,
-        "energia"-> Map("tem-energia" -> totalTemEnergia, "falha-eletrica"-> totalNaoTemEnergia),
-        "dados"-> sensores.map(dados => dados.asJson)
-      )
-      Ok(retorno)
+      Ok(DadosServices.getDadosSensorLoja(id, qtd))
     }
   }
-
 
   get("/id/:id") {
     Try {

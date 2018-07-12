@@ -18,7 +18,7 @@ case class Estabelecimento(var nome: String, var endereco: String, var telefone:
 case class Sensor(@Unique var codigo: String, var decricao: String, var temperaturaMin: Double, var temperaturaMax: Double) extends ActiveRecord {
   var estabelecimentoID: Long = 0
   lazy val estabelecimento = belongsTo[Estabelecimento](foreignKey = "estabelecimentoID")
-  lazy val dados = hasMany[Dados](foreignKey = "sensorID")
+  lazy val dados = hasMany[Dados](foreignKey  = "sensorID")
 }
 
 

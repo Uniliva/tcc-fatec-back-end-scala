@@ -29,7 +29,7 @@ class SensorController extends ControllerBase {
     Try {
       logger.info("Buscando sensor pelo ID.")
       val id = params("id").toLong
-      SensorService.buscaPorId(id).map(sensor => Ok("sensor" -> sensor.asJson)).orNull
+      Ok("sensor" -> SensorService.buscaPorId(id).asJson)
     }
   }
 
